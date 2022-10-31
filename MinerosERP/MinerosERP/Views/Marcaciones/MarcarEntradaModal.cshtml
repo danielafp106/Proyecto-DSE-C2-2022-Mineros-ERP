@@ -1,0 +1,39 @@
+﻿@model Marcaciones
+@{
+    ViewBag.Title = "Marcar Entrada";
+}
+<div class="modal fade" tabindex="-1" id="AddMarcacion" data-keyboard="false" data-backdrop="static">  
+    <div class="modal-dialog">  
+        <div class="modal-content">  
+            <div class="modal-header">  
+                <h4 class="modal-title">@ViewBag.Title</h4>  
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div> 
+            <div class="modal-body">  
+                <form action="@Url.Action("GuardarMarcacion")">  
+                    <div class="form-group">
+                        <label asp-for="fecha_marcacion">Fecha:</label>
+                        <input asp-for="fecha_marcacion" class="form-control" type="text" disabled/>  
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="hora_entrada">Hora:</label>
+                        <input asp-for="hora_entrada" class="form-control" type="text" disabled/>  
+                    </div> 
+                    <div class="form-group">
+                        <label asp-for="tipo_marcacion">Tipo de Marcación:</label>
+                        <select asp-for="tipo_marcacion" class="form-select">
+                          <option value="Horas Laborales" selected>Horas Laborales</option>
+                          <option value="Horas Extras">Horas Extras</option>
+                          <option value="Reposición de Horas">Reposición de Horas</option>
+                        </select> 
+                    </div> 
+                    <input asp-for="id_empleado" class="form-control" type="hidden" disabled/>  
+                </form>  
+             </div>  
+             <div class="modal-footer">  
+                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                 <button type="button" class="btn btn-success" data-save="modal" data-index="@Url.Action("Index")">Guardar Marcación</button> 
+             </div>  
+        </div>  
+    </div>  
+</div>

@@ -1,0 +1,72 @@
+﻿@model List<Marcaciones>
+@{
+    ViewData["Title"] = "Marcaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="ContenedorModal"></div>
+<div class="d-flex mb-2">
+    <div class="me-auto"><h1>Marcaciones</h1></div>
+    <div class="p-2">
+        @if(ViewBag.HayMarcacionAbierta == true)
+        {
+            <button type="button" class="btn btn-outline-primary" onclick="location.href='@Url.Action("MarcarSalida","Marcaciones",new {id = @ViewBag.IdMarcacionAbierta})'"><b>Marcar Salida</b></button>
+        }
+        else
+        {
+            <button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#AddMarcacion" data-url="@Url.Action("MarcarEntradaModal")"><b>Marcar Entrada</b></button>
+        }
+        </div>
+    <div class="p-2">
+        <span class="badge bg-dark" style="font-size:14px;">Total Semanal Laborado: <br />
+            @ViewBag.HorasTotalesSemana </span>          
+    </div> 
+</div>
+<h5>Semana Actual</h5>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Fecha Marcación</th>
+      <th scope="col">Hora de Entrada</th>
+      <th scope="col">Hora de Salida</th>
+      <th scope="col">Total de Horas Laboradas</th>
+      <th scope="col">Tipo de Marcación</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach(var item in Model)
+    {
+           <tr>
+          <td><pre>@item.fecha_marcacion.Replace('.',' ')</pre></td>
+          <td>@item.hora_entrada</td>
+          <td>@item.hora_salida</td>
+          <td>@item.total_horas</td>
+          <td>@item.tipo_marcacion</td>
+        </tr>
+    }
+  </tbody>
+</table>
+<br />
+<h5>Histórico de Marcaciones</h5>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Fecha Marcación</th>
+      <th scope="col">Hora de Entrada</th>
+      <th scope="col">Hora de Salida</th>
+      <th scope="col">Total de Horas Laboradas</th>
+      <th scope="col">Tipo de Marcación</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach(var item in ViewBag.TodasMarcaciones)
+    {
+           <tr>
+          <td><pre>@item.fecha_marcacion.Replace('.',' ')</pre></td>
+          <td>@item.hora_entrada</td>
+          <td>@item.hora_salida</td>
+          <td>@item.total_horas</td>
+          <td>@item.tipo_marcacion</td>
+        </tr>
+    }
+  </tbody>
+</table>
