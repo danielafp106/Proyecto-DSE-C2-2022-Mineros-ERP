@@ -11,7 +11,8 @@
             </div>
             <div class="modal-body">
                 <form action="@Url.Action("GuardarEmpleado")">
-                    <input asp-for="id" class="form-control" type="hidden" value="2" />
+                   
+                    <input asp-for="id_usuario" class="form-control" type="hidden" value="2" />
                     <div class="row">
                         <div class="col-md-6 col-sm-12  mt-2 mb-2">
                             <label asp-for="nombres_empleado" class="form-label">Nombre Empleado</label>
@@ -41,7 +42,7 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12  mt-2 mb-2">
                             <label asp-for="fecha_nacimiento_empleado" class="form-label">Fecha Nacimiento Empleado</label>
-                            <input type="text" class="form-control validate" asp-for="fecha_nacimiento_empleado"
+                            <input type="date" class="form-control validate" asp-for="fecha_nacimiento_empleado"
                                    placeholder="00-00-0000">
                         </div>
                         <div class="col-md-6 col-sm-12   mt-2 mb-2">
@@ -70,17 +71,28 @@
                                    placeholder="0000-000000">
                         </div>
                         <div class="col-md-6 col-sm-12   mt-2 mb-2">
-                            <label asp-for="id_cargo_empleado" class="form-label">Cargo Empleado</label>
-                            <input type="text" class="form-control validate" asp-for="id_cargo_empleado"
-                                   placeholder="000000-000">
+                            <label asp-for="id_area" class="form-label">Cargo Empleado</label>
+                            <select asp-for="id_area" class="form-select">
+                                <option value="">--- Seleccionar Area ---</option>
+                                @foreach (Areas area in ViewBag.areas)
+                                {
+                                    <option value="@area.id_area">@area.nombre_area</option>
+                                }
+
+                            </select>
                         </div>
                     </div>
                     <div class="row">
-                
                         <div class="col-md-6 col-sm-12   mt-2 mb-2">
-                            <label asp-for="id_area" class="form-label">Cargo Empleado</label>
-                            <input type="text" class="form-control validate" asp-for="id_area"
-                                   placeholder="000000-000">
+                            <label asp-for="id_cargo_empleado" class="form-label">Cargo Empleado</label>
+                            <select asp-for="id_cargo_empleado" class="form-select">
+                                <option value="">--- Seleccionar Cargo ---</option>
+                                @foreach (Cargos cargo in ViewBag.cargos)
+                                {
+                                    <option value="@cargo.id_cargo_empleado">@cargo.cargo_empleado</option>
+                                }
+
+                            </select>
                         </div>
                     </div>
 

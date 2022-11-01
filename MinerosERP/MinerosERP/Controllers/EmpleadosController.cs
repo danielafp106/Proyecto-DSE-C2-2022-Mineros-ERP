@@ -20,19 +20,26 @@ namespace MinerosERP.Controllers
            
             //Obtenemos todos los registros del usuario
             List<Empleados> empleados = await _serviciosEmpleadosAPI.ListarEmpleados();
+            List<Areas> areaEmp = await _serviciosEmpleadosAPI.ListarAreas();
+            List<Cargos> cargoEmp = await _serviciosEmpleadosAPI.ListarCargosEmpleados();
+            ViewBag.areas = areaEmp;
+            ViewBag.cargos = cargoEmp;
             //List<Empleados> listadoEmpleados = new List<Empleados>();
 
             return View(empleados);
         }
-        public ActionResult RegistrarEmpleadoModal()
+        public async Task<IActionResult> RegistrarEmpleadoModal()
         {
-            Empleados obj = new Empleados();    
-           
+            Empleados obj = new Empleados();
+            List<Areas> areaEmp = await _serviciosEmpleadosAPI.ListarAreas();
+            List<Cargos> cargoEmp = await _serviciosEmpleadosAPI.ListarCargosEmpleados();
+            ViewBag.areas = areaEmp;
+            ViewBag.cargos = cargoEmp;
+
             return PartialView("RegistrarEmpleadoModal", obj);
         }
         public async Task<IActionResult> GuardarEmpleado(Empleados obj)
         {
-           
             ViewBag.resultado = await _serviciosEmpleadosAPI.GuardarEmpleado(obj);
             return RedirectToAction("Index");
         }

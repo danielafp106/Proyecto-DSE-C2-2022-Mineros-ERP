@@ -16,10 +16,10 @@ namespace MinerosERP.Models
         public double sueldo_empleado { get; set; }
         public int id_cargo_empleado { get; set; }
         public int id_area { get; set; }
-       // public int id_usuario { get; set; }
+       public int id_usuario { get; set; }
      //   public string area_nombre { get; set; }
        // public string cargo_nombre { get; set; }
-        public long id { get; set; }
+       // public long id { get; set; }
 
     }
 
