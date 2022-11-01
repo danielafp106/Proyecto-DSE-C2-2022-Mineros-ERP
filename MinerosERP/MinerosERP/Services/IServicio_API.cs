@@ -17,6 +17,21 @@ namespace MinerosERP.Services
         Task<bool> GuardarMarcacion(Marcaciones Objeto);
         Task<bool> EditarMarcacion(int id, Marcaciones Objeto);
         Task<bool> EliminarMarcacion(int id);
+        
+        //AREAS
+        Task<List<Areas>> ListarAreas();
+        Task<Areas> ObtenerArea(int id);
+        Task<bool> GuardarArea(Areas Objeto);
+        Task<bool> EditarArea(int id, Areas Objeto);
+        Task<bool> EliminarArea(int id);
+
+        //CARGOS EMPLEADOS
+        Task<List<Cargos>> ListarCargosEmpleados();
+        Task<Cargos> ObtenerCargoEmpleado(int id);
+        Task<bool> GuardarCargoEmpleado(Cargos Objeto);
+        Task<bool> EditarCargoEmpleado(int id, Cargos Objeto);
+        Task<bool> EliminarCargoEmpleado(int id);
+
 
     }
 }

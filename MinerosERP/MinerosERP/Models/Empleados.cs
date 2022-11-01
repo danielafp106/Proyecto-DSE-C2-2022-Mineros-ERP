@@ -17,6 +17,9 @@ namespace MinerosERP.Models
         public int id_cargo_empleado { get; set; }
         public int id_area { get; set; }
         public int id_usuario { get; set; }
+        public int area_nombre { get; set; }
+        public int cargo_nombre { get; set; }
+
     }
 
 }

@@ -180,5 +180,168 @@ namespace MinerosERP.Services
         }
         #endregion
 
+        #region AREAS
+        public async Task<List<Areas>> ListarAreas()
+        {
+            List<Areas> lista = new List<Areas>();
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            var response = await cliente.GetAsync("api/areas");
+            if (response.IsSuccessStatusCode)
+            {
+                var json_repuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<List<Areas>>(json_repuesta);
+                lista.AddRange(resultado);
+            }
+            return lista;
+        }
+
+        public async Task<Areas> ObtenerArea(int id)
+        {
+            Areas objeto = new Areas();
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            var response = await cliente.GetAsync($"api/areas/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var json_repuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<Areas>(json_repuesta);
+                objeto = resultado;
+            }
+            return objeto;
+        }
+
+        public async Task<bool> GuardarArea(Areas Objeto)
+        {
+            bool resultado = false;
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+
+            var content = new StringContent(JsonConvert.SerializeObject(Objeto), Encoding.UTF8, "application/json");
+            var response = await cliente.PostAsync($"api/areas", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                resultado = true;
+            }
+
+            return resultado;
+        }
+
+        public async Task<bool> EditarArea(int id, Areas Objeto)
+        {
+            bool resultado = false;
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+
+            var content = new StringContent(JsonConvert.SerializeObject(Objeto), Encoding.UTF8, "application/json");
+            var response = await cliente.PutAsync($"api/areas/{id}", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                resultado = true;
+            }
+
+            return resultado;
+        }
+
+        public async Task<bool> EliminarArea(int id)
+        {
+            bool resultado = false;
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+
+            var response = await cliente.DeleteAsync($"api/areas/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                resultado = true;
+            }
+
+            return resultado;
+        }
+        #endregion
+
+        #region CARGOSEMPLEADOS
+        public async Task<List<Cargos>> ListarCargosEmpleados()
+        {
+            List<Cargos> lista = new List<Cargos>();
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            var response = await cliente.GetAsync("api/cargos");
+            if (response.IsSuccessStatusCode)
+            {
+                var json_repuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<List<Cargos>>(json_repuesta);
+                lista.AddRange(resultado);
+            }
+            return lista;
+        }
+
+        public async Task<Cargos> ObtenerCargoEmpleado(int id)
+        {
+            Cargos objeto = new Cargos();
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            var response = await cliente.GetAsync($"api/cargos/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var json_repuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<Cargos>(json_repuesta);
+                objeto = resultado;
+            }
+            return objeto;
+        }
+
+        public async Task<bool> GuardarCargoEmpleado(Cargos Objeto)
+        {
+            bool resultado = false;
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+
+            var content = new StringContent(JsonConvert.SerializeObject(Objeto), Encoding.UTF8, "application/json");
+            var response = await cliente.PostAsync($"api/cargos", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                resultado = true;
+            }
+
+            return resultado;
+        }
+
+        public async Task<bool> EditarCargoEmpleado(int id, Cargos Objeto)
+        {
+            bool resultado = false;
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+
+            var content = new StringContent(JsonConvert.SerializeObject(Objeto), Encoding.UTF8, "application/json");
+            var response = await cliente.PutAsync($"api/cargos/{id}", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                resultado = true;
+            }
+
+            return resultado;
+        }
+
+        public async Task<bool> EliminarCargoEmpleado(int id)
+        {
+            bool resultado = false;
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+
+            var response = await cliente.DeleteAsync($"api/cargos/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                resultado = true;
+            }
+
+            return resultado;
+        }
+        #endregion
     }
 }

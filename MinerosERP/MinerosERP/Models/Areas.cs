@@ -2,7 +2,7 @@
 {
     public class Areas
     {
-        int IdArea { get; set; }
-        string? NombreArea { get; set; }
+        public int id_area { get; set; }
+        public string nombre_area { get; set; }
     }
 }

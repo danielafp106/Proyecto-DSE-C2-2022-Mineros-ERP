@@ -8,7 +8,6 @@ namespace MinerosERP.Controllers
     public class MarcacionesController : Controller
     {
         private readonly IServicio_API _serviciosEmpleadosAPI;
-        private string tabla = "marcaciones";
 
         public MarcacionesController(IServicio_API servicioEmpleadosAPI)
         {

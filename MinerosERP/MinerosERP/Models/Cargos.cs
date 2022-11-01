@@ -3,7 +3,7 @@
     public class Cargos
     {
         //Cargos de empleados en la empresa
-        int IdCargoEmpleado { get; set; }
-        string? CargoEmpleado { get; set; }
+        public int id_cargo_empleado { get; set; }
+        public string cargo_empleado { get; set; }
     }
 }
