@@ -1,0 +1,79 @@
+﻿@model List<Empleados>
+@{
+    ViewData["Title"] = "Empleados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="ContenedorModal"></div>
+<div class="d-flex mb-2">
+    <div class="me-auto"><h1>Empleados</h1></div>
+    <div class="p-2">
+      
+        <button type="button" class="btn btn-primary"
+                data-toggle="ajax-modal" data-target="#NuevoEmpleado"
+                data-url="@Url.Action("RegistrarEmpleadoModal")">
+            <b>Registrar Empleado</b>
+        </button>
+       
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-header">
+        Lista de empleados
+    </div>
+    <div class="card-body">
+
+        <a asp-action="Empleado" asp-controller="Home" asp-route-idEmpleado="0" class="btn btn-success btn-sm">Nuevo Empleado</a>
+        
+        <hr />
+         <div class="table-responsive mt-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Dirección</th>
+                    <th>Dui</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Telefono</th>
+                    <th>ISS</th>
+                    <th>AFP</th>
+                    <th>Sueldo</th>
+                    <th>Cargo Empleado</th>
+                    <th>Area empleado</th>
+                    <th>Usuario</th>
+                    <th>Acciones</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.nombres_empleado</td>
+                        <td>@item.apellidos_empleado</td>
+                        <td>@item.direccion_empleado</td>
+                        <td>@item.dui_empleado</td>
+                        <td><pre>@item.fecha_nacimiento_empleado.Replace('.',' ')</pre></td>
+                        <td>@item.telefono_empleado</td>
+                        <td>@item.numero_isss_empleado</td>
+                        <td>@item.numero_afp_empleado</td>
+                        <td>@item.sueldo_empleado</td>
+                        <td>Cargo Empleado</td>
+                        <td>Area empleado</td>
+                        <td>Usuario</td>
+                        <td>
+                            <a asp-action="Producto" asp-controller="Home" asp-route-idEmpleado="@item.id_empleado" class="btn btn-primary btn-sm">Editar</a>
+                            <a asp-action="Eliminar" asp-controller="Home" asp-route-idEmpleado="@item.id_empleado" class="btn btn-danger btn-sm">Eliminar</a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+    </div>
+
+</div>

@@ -22,7 +22,7 @@ namespace MinerosERP.Services
             List<Empleados> lista = new List<Empleados>();
             var cliente = new HttpClient();
             cliente.BaseAddress = new Uri(_baseurl);
-            var response = await cliente.GetAsync("api/empleado");
+            var response = await cliente.GetAsync("api/empleados");
             if (response.IsSuccessStatusCode)
             {
                 var json_repuesta = await response.Content.ReadAsStringAsync();
@@ -37,7 +37,7 @@ namespace MinerosERP.Services
             Empleados empleado = new Empleados();
             var cliente = new HttpClient();
             cliente.BaseAddress = new Uri(_baseurl);
-            var response = await cliente.GetAsync($"api/empleado/{id}");
+            var response = await cliente.GetAsync($"api/empleados/{id}");
             if (response.IsSuccessStatusCode)
             {
                 var json_repuesta = await response.Content.ReadAsStringAsync();
@@ -54,7 +54,7 @@ namespace MinerosERP.Services
             cliente.BaseAddress = new Uri(_baseurl);
 
             var content = new StringContent(JsonConvert.SerializeObject(EmpObjeto), Encoding.UTF8, "application/json");
-            var response = await cliente.PostAsync($"api/empleado", content);
+            var response = await cliente.PostAsync($"api/empleados", content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -71,7 +71,7 @@ namespace MinerosERP.Services
             cliente.BaseAddress = new Uri(_baseurl);
 
             var content = new StringContent(JsonConvert.SerializeObject(EmpObjeto), Encoding.UTF8, "application/json");
-            var response = await cliente.PutAsync($"api/empleado/{id}", content);
+            var response = await cliente.PutAsync($"api/empleados/{id}", content);
 
             if(response.IsSuccessStatusCode)
             {
@@ -87,7 +87,7 @@ namespace MinerosERP.Services
             var cliente = new HttpClient();
             cliente.BaseAddress = new Uri(_baseurl);
 
-            var response = await cliente.DeleteAsync($"api/empleado/{id}");
+            var response = await cliente.DeleteAsync($"api/empleados/{id}");
 
             if (response.IsSuccessStatusCode)
             {
