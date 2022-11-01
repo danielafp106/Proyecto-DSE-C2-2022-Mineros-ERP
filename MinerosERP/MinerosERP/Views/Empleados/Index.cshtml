@@ -56,8 +56,24 @@
                         <td>@item.direccion_empleado</td>
                         <td>@item.dui_empleado</td>
                      
-                        <td>@item.id_cargo_empleado</td>
-                        <td>@item.id_area</td>
+                        <td>
+                                @foreach (Cargos cargo in ViewBag.cargos)
+                                {
+                                    if (@item.id_cargo_empleado == @cargo.id_cargos_empleado)
+                                        @cargo.cargos_empleado;
+                                    ;
+
+
+                                }
+                            </td>
+                        <td>
+                        @foreach(Areas area in ViewBag.areas)    
+                        {
+                                    if (@item.id_area == @area.id_area)
+                                    @area.nombre_area;
+                                       
+                              }
+                            </td>
                         <td>@item.id_usuario</td>
                         <td>
                             <a asp-action="Producto" asp-controller="Home" asp-route-idEmpleado="@item.id_empleado" class="btn btn-primary btn-sm">Editar</a>
