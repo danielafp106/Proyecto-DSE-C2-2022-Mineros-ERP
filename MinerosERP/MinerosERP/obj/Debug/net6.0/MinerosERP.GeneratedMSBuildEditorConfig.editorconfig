@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\xvwil\Desktop\Proyecto-de-Catedra-DSE-C2-2022\MinerosERP\MinerosERP
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/xvwil/Desktop/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Empleados/EditarEmpleadoModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbGVhZG9zXEVkaXRhckVtcGxlYWRvTW9kYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/xvwil/Desktop/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Empleados/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbGVhZG9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

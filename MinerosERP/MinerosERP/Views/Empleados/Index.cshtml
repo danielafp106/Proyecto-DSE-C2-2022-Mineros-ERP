@@ -76,8 +76,16 @@
                             </td>
                         <td>@item.id_usuario</td>
                         <td>
-                            <a asp-action="Producto" asp-controller="Home" asp-route-idEmpleado="@item.id_empleado" class="btn btn-primary btn-sm">Editar</a>
-                            <a asp-action="Eliminar" asp-controller="Home" asp-route-idEmpleado="@item.id_empleado" class="btn btn-danger btn-sm">Eliminar</a>
+
+                                <button type="button" class="btn btn-primary"
+                                    data-toggle="ajax-modal" data-target="#EditarEmpleado"
+                                    data-url="@Url.Action("EditarEmpleadoModal" ,"Empleados", new {id = @item.id_empleado})"
+                                    asp-route-id="@item.id_empleado">
+                                 
+                                                                      
+                                    <b>Editar Empleado</b>
+                                </button>
+                            <a asp-action="EliminarEmpleado" asp-controller="Empleados" asp-route-id="@item.id_empleado" class="btn btn-danger"><b>Eliminar</b></a>
 
                         </td>
                     </tr>

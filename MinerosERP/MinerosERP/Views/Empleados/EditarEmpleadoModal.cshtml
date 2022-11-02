@@ -1,0 +1,110 @@
+﻿@model Empleados
+@{
+    ViewBag.Title = "Editar Empleado";
+}
+<div class="modal fade" tabindex="-1" id="EditarEmpleado" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">@ViewBag.Title</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="@Url.Action("EditarEmpleado", "Empleados",new {id = Model.id_empleado})"
+                    >
+
+                    <input asp-for="id_usuario" class="form-control" type="hidden" value="2" />
+                    <input asp-for="id_empleado" class="form-control" type="hidden"/>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12  mt-2 mb-2">
+                            <label asp-for="nombres_empleado" class="form-label">Nombre Empleado</label>
+                            <input type="text" class="form-control validate" asp-for="nombres_empleado"
+                                   placeholder="Wilfredo">
+                        </div>
+                        <div class="col-md-6 col-sm-12   mt-2 mb-2">
+                            <label asp-for="apellidos_empleado" class="form-label">Apellido Empleado</label>
+                            <input type="text" class="form-control validate" asp-for="apellidos_empleado"
+                                   placeholder="Granados">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12  mt-2 mb-2">
+                            <label asp-for="direccion_empleado" class="form-label">Dirección Empleado</label>
+                            <input type="text" class="form-control validate" asp-for="direccion_empleado"
+                                   placeholder="Wilfredo">
+                        </div>
+                        <div class="col-md-6 col-sm-12   mt-2 mb-2">
+                            <label asp-for="dui_empleado" class="form-label">DUI Empleado</label>
+                            <input type="text" class="form-control validate" asp-for="dui_empleado"
+                                   placeholder="00000000-0">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12  mt-2 mb-2">
+                            <label asp-for="fecha_nacimiento_empleado" class="form-label">Fecha Nacimiento Empleado</label>
+                            <input type="date" class="form-control validate" asp-for="fecha_nacimiento_empleado"
+                                   placeholder="00-00-0000">
+                        </div>
+                        <div class="col-md-6 col-sm-12   mt-2 mb-2">
+                            <label asp-for="telefono_empleado" class="form-label">Telefono Empleado</label>
+                            <input type="text" class="form-control validate" asp-for="telefono_empleado"
+                                   placeholder="2222-2222">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12  mt-2 mb-2">
+                            <label asp-for="numero_isss_empleado" class="form-label">ISSS Empleado</label>
+                            <input type="text" class="form-control validate" asp-for="numero_isss_empleado"
+                                   placeholder="0000-000000">
+                        </div>
+                        <div class="col-md-6 col-sm-12   mt-2 mb-2">
+                            <label asp-for="numero_afp_empleado" class="form-label">AFP Empleado</label>
+                            <input type="text" class="form-control validate" asp-for="numero_afp_empleado"
+                                   placeholder="000000-000">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12  mt-2 mb-2">
+                            <label asp-for="sueldo_empleado" class="form-label">Sueldo Empleado</label>
+                            <input type="text" class="form-control validate" asp-for="sueldo_empleado"
+                                   placeholder="0000-000000">
+                        </div>
+                        <div class="col-md-6 col-sm-12   mt-2 mb-2">
+                            <label asp-for="id_area" class="form-label">Cargo Empleado</label>
+                            <select asp-for="id_area" class="form-select">
+                                <option value="">--- Seleccionar Area ---</option>
+                                @foreach (Areas area in ViewBag.areas)
+                                {
+                                    <option value="@area.id_area">@area.nombre_area</option>
+                                }
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12   mt-2 mb-2">
+                            <label asp-for="id_cargo_empleado" class="form-label">Cargo Empleado</label>
+                            <select asp-for="id_cargo_empleado" class="form-select">
+                                <option value="">--- Seleccionar Cargo ---</option>
+                                @foreach (Cargos cargo in ViewBag.cargos)
+                                {
+                                    <option value="@cargo.id_cargos_empleado">@cargo.cargos_empleado</option>
+                                }
+
+                            </select>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" data-save="modal" data-index="@Url.Action("Index")">Editar Empleado</button>
+            </div>
+        </div>
+    </div>
+</div>

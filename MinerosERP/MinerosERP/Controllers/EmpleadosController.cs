@@ -38,17 +38,35 @@ namespace MinerosERP.Controllers
 
             return PartialView("RegistrarEmpleadoModal", obj);
         }
+        public async Task<IActionResult> EditarEmpleadoModal(int id)
+        {
+            Empleados obj = await _serviciosEmpleadosAPI.ObtenerEmpleado(id);
+            List<Areas> areaEmp = await _serviciosEmpleadosAPI.ListarAreas();
+            List<Cargos> cargoEmp = await _serviciosEmpleadosAPI.ListarCargosEmpleados();
+            ViewBag.areas = areaEmp;
+            ViewBag.cargos = cargoEmp;
+
+            return PartialView("EditarEmpleadoModal", obj);
+        }
         public async Task<IActionResult> GuardarEmpleado(Empleados obj)
         {
             ViewBag.resultado = await _serviciosEmpleadosAPI.GuardarEmpleado(obj);
             return RedirectToAction("Index");
         }
-        public async Task<IActionResult> MarcarSalida(int id)
+        public async Task<IActionResult> EditarEmpleado(int id, Empleados obj)
         {
-            Marcaciones obj = await _serviciosEmpleadosAPI.ObtenerMarcacion(id);
-            obj.hora_salida = DateTime.Now.ToString("hh:mm:ss tt", CultureInfo.InvariantCulture);
-            ViewBag.resultado = await _serviciosEmpleadosAPI.EditarMarcacion(id, obj);
+                       
+            ViewBag.resultado = await _serviciosEmpleadosAPI.EditarEmpleado(id, obj);
             return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> EliminarEmpleado(int id)
+        {
+
+            var resultado = await _serviciosEmpleadosAPI.EliminarEmpleado(id);
+            if (resultado)
+                return RedirectToAction("Index");
+            else
+                return NoContent();
         }
     }
 }
