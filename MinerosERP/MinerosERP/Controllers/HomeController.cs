@@ -17,7 +17,7 @@ namespace MinerosERP.Controllers
         public async Task<IActionResult> Index()
         {
             //List<Empleados> empleados = await _serviciosEmpleadosAPI.Lista("empleado");
-            return View(/*empleados*/);
+             return View(/*empleados*/);
         }
 
         public async Task<IActionResult> Empleado(int id)

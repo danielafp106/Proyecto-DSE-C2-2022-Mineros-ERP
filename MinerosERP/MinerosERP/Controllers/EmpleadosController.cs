@@ -68,5 +68,7 @@ namespace MinerosERP.Controllers
             else
                 return NoContent();
         }
+
+
     }
 }
