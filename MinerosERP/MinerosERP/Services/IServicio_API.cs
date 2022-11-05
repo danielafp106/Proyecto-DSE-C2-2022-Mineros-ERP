@@ -32,6 +32,12 @@ namespace MinerosERP.Services
         Task<bool> EditarCargoEmpleado(int id, Cargos Objeto);
         Task<bool> EliminarCargoEmpleado(int id);
 
+        //LOGIN 
+        Task<bool> Login(Login Objeto);
+
+        //REGISTRATION
+        Task<bool> Registration(Registration Objeto);
+
 
     }
 }

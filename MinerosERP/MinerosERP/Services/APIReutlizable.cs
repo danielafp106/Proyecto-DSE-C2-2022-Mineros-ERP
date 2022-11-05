@@ -2,6 +2,7 @@
 using System.Net.Http.Headers;
 using System.Text;
 using MinerosERP.Models;
+using System;
 
 namespace MinerosERP.Services
 {
@@ -343,5 +344,36 @@ namespace MinerosERP.Services
             return resultado;
         }
         #endregion
+
+        #region LOGIN
+        public async Task<bool> Login(Login obj)
+        {
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            cliente.BaseAddress = new Uri(_baseurl);
+
+            var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
+
+            var response = await cliente.PostAsync($"api/authentication/", content);
+
+            return true;
+        }
+        #endregion
+
+        #region REGISTRATION
+        public async Task<bool> Registration(Registration obj)
+        {
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            cliente.BaseAddress = new Uri(_baseurl);
+
+            var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
+
+            var response = await cliente.PostAsync($"api/registration", content);
+
+            return true;
+        }
+        #endregion
+
     }
 }

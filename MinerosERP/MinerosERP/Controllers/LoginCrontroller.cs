@@ -21,6 +21,13 @@ namespace MinerosERP.Controllers
             return View("~/Views/Login/Login.cshtml");
         }
 
+        public async Task<IActionResult> Login(Login obj)
+        {
+            ViewBag.resultado = await _serviciosEmpleadosAPI.Login(obj);
+            return RedirectToAction("Index");
+
+        }
+
         public async Task<IActionResult> Empleado(int id)
         {
             Empleados empleado = new Empleados();
