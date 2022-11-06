@@ -346,17 +346,24 @@ namespace MinerosERP.Services
         #endregion
 
         #region LOGIN
-        public async Task<bool> Login(Login obj)
+
+        public async Task<string> Login(Login Objeto)
         {
             var cliente = new HttpClient();
             cliente.BaseAddress = new Uri(_baseurl);
-            cliente.BaseAddress = new Uri(_baseurl);
+       
 
-            var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonConvert.SerializeObject(Objeto), Encoding.UTF8, "application/json");
 
-            var response = await cliente.PostAsync($"api/authentication/", content);
+            var response = await cliente.PostAsync($"api/authentication/login", content);
+            if (response.IsSuccessStatusCode)
+            {
+                string a = response.ToString();
+                Console.WriteLine(a);
+                return "a";
+            }
 
-            return true;
+            return "ab";
         }
         #endregion
 
