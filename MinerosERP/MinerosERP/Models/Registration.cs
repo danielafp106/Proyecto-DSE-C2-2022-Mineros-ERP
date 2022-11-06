@@ -2,13 +2,13 @@
 {
     public class Registration
     {
-        public string user { get; set; }
+        public string username { get; set; }
 
         public string email { get; set; }
 
-        public string pass1 { get; set; }
+        public string password1 { get; set; }
 
-        public string pass2 { get; set; }
+        public string password2 { get; set; }
 
 
 
