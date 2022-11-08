@@ -16,8 +16,11 @@ namespace MinerosERP.Controllers
 
         public async Task<IActionResult> Index()
         {
+            ViewData["user"] = HttpContext.Session.GetString("username").ToString();
+            ViewData["name"] = HttpContext.Session.GetString("full_name").ToString();
+            ViewData["pk"] = HttpContext.Session.GetInt32("id_usuario").ToString();
             //List<Empleados> empleados = await _serviciosEmpleadosAPI.Lista("empleado");
-             return View(/*empleados*/);
+            return View(/*empleados*/);
         }
 
         public async Task<IActionResult> Empleado(int id)

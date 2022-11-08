@@ -33,7 +33,7 @@ namespace MinerosERP.Services
         Task<bool> EliminarCargoEmpleado(int id);
 
         //LOGIN 
-        Task<string> Login(Login Objeto);
+        Task<LoginResponse> Login(Login Objeto);
 
         //REGISTRATION
         Task<string> Register(Registration Objeto);

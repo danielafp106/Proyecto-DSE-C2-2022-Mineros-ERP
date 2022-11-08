@@ -9,5 +9,6 @@
         public string tipo_marcacion { get; set; }
         public int id_empleado { get; set; }
         public string? total_horas { get; set; }
+        public string? username { get; set; }
     }
 }

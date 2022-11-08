@@ -2,6 +2,7 @@
 using MinerosERP.Models;
 using MinerosERP.Services;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
 
 namespace MinerosERP.Controllers
 {
@@ -18,23 +19,26 @@ namespace MinerosERP.Controllers
         {
             //List<Empleados> empleados = await _serviciosEmpleadosAPI.Lista("empleado");
             // return View(/*empleados*/);
-            return View("~/Views/Login/Login.cshtml");
+            return View();
         }
 
         //[HttpPost]
         public async Task<IActionResult> Login(Login obj)
         {
 
-            string resul = await _serviciosEmpleadosAPI.Login(obj);
+            LoginResponse result = await _serviciosEmpleadosAPI.Login(obj);
 
-            if (resul != "")
+            if (result.pk != 0 && result.username != null && result.username!="")
             {
-            return RedirectToAction("Index", "Home");
-
+                HttpContext.Session.SetInt32("id_usuario", result.pk);
+                HttpContext.Session.SetString("username", result.username.ToString());
+                HttpContext.Session.SetString("full_name", $"{result.first_name} {result.last_name}".ToString());               
+                return RedirectToAction("Index", "Home");
             }
-
-            return View();
-
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
         }
 
         public async Task<IActionResult> Empleado(int id)

@@ -347,25 +347,39 @@ namespace MinerosERP.Services
 
         #region LOGIN
 
-        public async Task<string> Login(Login Objeto)
+        public async Task<LoginResponse> Login(Login Objeto)
         {
             var cliente = new HttpClient();
             cliente.BaseAddress = new Uri(_baseurl);
-       
+            LoginResponse user = new LoginResponse();
 
             var content = new StringContent(JsonConvert.SerializeObject(Objeto), Encoding.UTF8, "application/json");
 
-            var response = await cliente.PostAsync($"api/authentication/login", content);
+            var response = await cliente.PostAsync($"api/authentication/login/", content);
 
 
             if (response.IsSuccessStatusCode)
             {
-                //string a = response.ToString();
-                //Console.WriteLine(a);
-                return "true";
+                var json_repuesta = await response.Content.ReadAsStringAsync();
+                user = JsonConvert.DeserializeObject<LoginResponse>(json_repuesta);
+                user.username = Objeto.username;
+                var response2 = await cliente.GetAsync($"api/authentication/user/?username={user.username}");
+                if (response2.IsSuccessStatusCode)
+                {
+                    var json_repuesta2 = await response2.Content.ReadAsStringAsync();
+                    var userInformation = JsonConvert.DeserializeObject<LoginResponse>(json_repuesta2);
+                    user.pk = userInformation.pk;
+                    user.first_name = userInformation.first_name;
+                    user.last_name = userInformation.last_name;
+                }
+                else
+                {
+                    return new LoginResponse();
+                }
+                return user;
             }
             //Aqui se debe de enviar el mensaje de error que response la api
-            return "false";
+            return user;
         }
         #endregion
 
