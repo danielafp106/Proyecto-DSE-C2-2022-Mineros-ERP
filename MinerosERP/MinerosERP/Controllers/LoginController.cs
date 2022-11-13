@@ -30,7 +30,10 @@ namespace MinerosERP.Controllers
 
             if (result.pk != 0 && result.username != null && result.username!="")
             {
+                List<Empleados> Empleados = await _serviciosEmpleadosAPI.ListarEmpleados();
+                Empleados currentEmpleado = Empleados.Where(x => x.id_usuario == result.pk).FirstOrDefault();
                 HttpContext.Session.SetInt32("id_usuario", result.pk);
+                HttpContext.Session.SetInt32("id_empleado", currentEmpleado.id_empleado);
                 HttpContext.Session.SetString("username", result.username.ToString());
                 HttpContext.Session.SetString("full_name", $"{result.first_name} {result.last_name}".ToString());               
                 return RedirectToAction("Index", "Home");

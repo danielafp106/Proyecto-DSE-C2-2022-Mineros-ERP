@@ -50,8 +50,13 @@ namespace MinerosERP.Controllers
         }
         public async Task<IActionResult> GuardarEmpleado(Empleados obj)
         {
-            ViewBag.resultado = await _serviciosEmpleadosAPI.GuardarEmpleado(obj);
-            return RedirectToAction("Index");
+            if(ModelState.IsValid)
+            {
+                ViewBag.resultado = await _serviciosEmpleadosAPI.GuardarEmpleado(obj);
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+            
         }
         public async Task<IActionResult> EditarEmpleado(int id, Empleados obj)
         {

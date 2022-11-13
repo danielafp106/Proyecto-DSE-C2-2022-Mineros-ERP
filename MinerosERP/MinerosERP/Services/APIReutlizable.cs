@@ -405,5 +405,36 @@ namespace MinerosERP.Services
         }
         #endregion
 
+        #region USUARIOS
+        public async Task<List<Usuarios>> ListarUsuarios()
+        {
+            List<Usuarios> lista = new List<Usuarios>();
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            var response = await cliente.GetAsync("api/usuarios");
+            if (response.IsSuccessStatusCode)
+            {
+                var json_repuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<List<Usuarios>>(json_repuesta);
+                lista.AddRange(resultado);
+            }
+            return lista;
+        }
+
+        public async Task<Usuarios> ObtenerUsuario(int id)
+        {
+            Usuarios objeto = new Usuarios();
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            var response = await cliente.GetAsync($"api/usuarios/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var json_repuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<Usuarios>(json_repuesta);
+                objeto = resultado;
+            }
+            return objeto;
+        }
+        #endregion
     }
 }

@@ -47,8 +47,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FjaW9uZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Marcaciones/IndexJefes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FjaW9uZXNcSW5kZXhKZWZlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Marcaciones/MarcarEntradaModal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FjaW9uZXNcTWFyY2FyRW50cmFkYU1vZGFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Marcaciones/VerHistorial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FjaW9uZXNcVmVySGlzdG9yaWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Registration/Registration.cshtml]

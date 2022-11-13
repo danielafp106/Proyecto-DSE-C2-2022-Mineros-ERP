@@ -38,6 +38,9 @@ namespace MinerosERP.Services
         //REGISTRATION
         Task<string> Register(Registration Objeto);
 
+        //USUARIOS
+        Task<List<Usuarios>> ListarUsuarios();
+        Task<Usuarios> ObtenerUsuario(int id);
 
     }
 }
