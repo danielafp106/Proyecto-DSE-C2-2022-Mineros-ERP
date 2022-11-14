@@ -27,7 +27,8 @@ namespace MinerosERP.Controllers
         {
 
             LoginResponse result = await _serviciosEmpleadosAPI.Login(obj);
-
+            //Debug.WriteLine(result);         
+                //Console.WriteLine(result);
             if (result.pk != 0 && result.username != null && result.username!="")
             {
                 List<Empleados> Empleados = await _serviciosEmpleadosAPI.ListarEmpleados();

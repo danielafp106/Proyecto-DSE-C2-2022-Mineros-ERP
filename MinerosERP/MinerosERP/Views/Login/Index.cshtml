@@ -30,17 +30,17 @@
                                         </div>
 
                                         <form action="@Url.Action("Login", "Login")">
-                                            <p>Please login to your account</p>
+                                            @*<p>Please login to your account</p>*@
 
                                             <div class="form-floating mb-4">
                                                 <input type="text" asp-for="username" class="form-control"
                                                        placeholder="Usuario" />
-                                                <label class="form-label" asp-for="username">Email</label>
+                                                <label class="form-label" asp-for="username">Usuario</label>
                                             </div>
                                             <div class="form-floating mb-4">
                                                 <input type="password" asp-for="password" class="form-control"
                                                        placeholder="Phone number or email address" />
-                                                <label class="form-label" asp-for="password">Password</label>
+                                                <label class="form-label" asp-for="password">Contraseña</label>
                                             </div>
 
 
@@ -53,10 +53,7 @@
                                         </form>
                                        
 
-                                        <div class="d-flex align-items-center justify-content-center pb-4">
-                                            <p class="mb-0 me-2">Don't have an account?</p>
-                                            <a type="button" class="btn btn-outline-danger" href="@Url.Action("Registration","Registration")">Create new</a>
-                                        </div>
+                                       
                                     </div>
                                 </div>
                                 <div class="col-lg-6 d-flex align-items-center gradient-custom-2">

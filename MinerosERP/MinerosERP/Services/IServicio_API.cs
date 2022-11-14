@@ -36,7 +36,7 @@ namespace MinerosERP.Services
         Task<LoginResponse> Login(Login Objeto);
 
         //REGISTRATION
-        Task<string> Register(Registration Objeto);
+        Task<Registration> Register(Registration Objeto);
 
         //USUARIOS
         Task<List<Usuarios>> ListarUsuarios();

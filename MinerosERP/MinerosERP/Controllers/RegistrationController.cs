@@ -17,8 +17,12 @@ namespace MinerosERP.Controllers
         }
 
         // GET: RegistrationController
-        public ActionResult Registration()
+        public async Task<IActionResult> Registration()
+
         {
+            List<Areas> areaEmp = await _serviciosEmpleadosAPI.ListarAreas();
+
+            ViewBag.areas = areaEmp;
             return View();
         }
 
@@ -36,12 +40,12 @@ namespace MinerosERP.Controllers
             }
 
 
-            string resul = await _serviciosEmpleadosAPI.Register(obj);
+            Registration resul = await _serviciosEmpleadosAPI.Register(obj);
 
 
 
 
-            if (resul == "true")
+            if (resul.key != "" )
             {
                 return RedirectToAction("Index", "Home");
             }

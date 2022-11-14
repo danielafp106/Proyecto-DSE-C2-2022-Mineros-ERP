@@ -2,16 +2,6 @@
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MinerosERP</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
-</head>
-<body>
 
     <div class="container">
         <section class="h-100 gradient-form" style="background-color: #eee;">
@@ -30,8 +20,8 @@
                                         </div>
 
                                         <form action="@Url.Action("Register", "Registration")">
-                                            <p>Please login to your account</p>
-
+                                            <p>Ingresa la información requerida para crear el usuario</p>
+                                       
                                             <div class="form-floating mb-4">
                                                 <input type="text" asp-for="username" class="form-control"
                                                        placeholder="Usuario" />
@@ -91,9 +81,4 @@
     <br />
     <br />
   
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-</body>
-</html>
+   

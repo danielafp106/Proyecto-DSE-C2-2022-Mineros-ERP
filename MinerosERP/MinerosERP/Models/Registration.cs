@@ -10,6 +10,8 @@
 
         public string password2 { get; set; }
 
+        public string key { get; set; }
+
 
 
 

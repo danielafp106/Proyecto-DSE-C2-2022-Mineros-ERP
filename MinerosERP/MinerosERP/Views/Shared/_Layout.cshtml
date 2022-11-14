@@ -28,8 +28,11 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Registration" asp-action="Registration">Registrar empleado</a>
+                        </li>
                          <li class="nav-item">
-                            <p>@ViewData["pk"] - @ViewData["user"]</p>
+                            <p>@ViewData["pk"] - @ViewData["user"] - @ViewData["full_name"]</p>
                         </li>
                     </ul>
                 </div>

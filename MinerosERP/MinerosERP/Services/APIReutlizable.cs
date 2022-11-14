@@ -384,9 +384,10 @@ namespace MinerosERP.Services
         #endregion
 
         #region REGISTRATION
-        public async Task<string> Register(Registration obj)
+        public async Task<Registration> Register(Registration obj)
         {
             var cliente = new HttpClient();
+            Registration res = new Registration();
             cliente.BaseAddress = new Uri(_baseurl);
 
             var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
@@ -396,12 +397,14 @@ namespace MinerosERP.Services
 
             if (response.IsSuccessStatusCode)
             {
-                //string a = response.ToString();
-                //Console.WriteLine(a);
-                return "true";
+              
+                var json_repuesta2 = await response.Content.ReadAsStringAsync();
+                var userInformation = JsonConvert.DeserializeObject<LoginResponse>(json_repuesta2);
+               res.key = userInformation.key;
+                return res;
             }
             //Aqui se debe de enviar el mensaje de error que response la api
-            return "false";
+            return res;
         }
         #endregion
 
