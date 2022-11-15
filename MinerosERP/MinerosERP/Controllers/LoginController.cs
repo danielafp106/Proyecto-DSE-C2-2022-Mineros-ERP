@@ -15,10 +15,11 @@ namespace MinerosERP.Controllers
             _serviciosEmpleadosAPI = servicioEmpleadosAPI;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(bool isHacker = false)
         {
             //List<Empleados> empleados = await _serviciosEmpleadosAPI.Lista("empleado");
             // return View(/*empleados*/);
+            ViewBag.log = isHacker;
             return View();
         }
 
@@ -41,10 +42,16 @@ namespace MinerosERP.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Login");
+
+                return RedirectToAction("Index", "Login", new { isHacker = true} );
             }
         }
 
+
+        public async Task<IActionResult> Logout()
+        {
+            return RedirectToAction("Index", "Login");
+        }
         public async Task<IActionResult> Empleado(int id)
         {
             Empleados empleado = new Empleados();

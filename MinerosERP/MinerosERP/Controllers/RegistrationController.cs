@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MinerosERP.Models;
 using MinerosERP.Services;
+using Newtonsoft.Json;
+using NuGet.Protocol;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using System.Text;
 
 namespace MinerosERP.Controllers
 {
@@ -17,12 +21,11 @@ namespace MinerosERP.Controllers
         }
 
         // GET: RegistrationController
-        public async Task<IActionResult> Registration()
+        public async Task<IActionResult> Registration(bool flag = true, bool firtsTime = true)
 
         {
-            List<Areas> areaEmp = await _serviciosEmpleadosAPI.ListarAreas();
-
-            ViewBag.areas = areaEmp;
+            ViewBag.error = flag; 
+ViewBag.firtsTime = firtsTime; 
             return View();
         }
 
@@ -36,20 +39,23 @@ namespace MinerosERP.Controllers
             {
 
                 //Aqui debe mostrar una alerta de que las contraseñas deben ser iguales.
-                return RedirectToAction("Registration", "Registration");
+                return RedirectToAction("Registration", "Registration", new { flag = false, firtsTime = false });
             }
 
 
-            Registration resul = await _serviciosEmpleadosAPI.Register(obj);
+            bool resul = await _serviciosEmpleadosAPI.Register(obj);
 
 
 
+            //ViewData["error"] = resul;
 
-            if (resul.key != "" )
+            if (!resul)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Registration", "Registration", new { flag = resul,firtsTime = false });
+
             }
-            return RedirectToAction("Registration", "Registration");
+            return RedirectToAction("Registration", "Registration", new { flag = resul, firtsTime = false });
+
         }
 
         // GET: RegistrationController/Details/5

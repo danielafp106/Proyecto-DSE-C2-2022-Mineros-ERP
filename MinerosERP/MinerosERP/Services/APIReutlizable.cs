@@ -3,6 +3,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using MinerosERP.Models;
 using System;
+using System.Diagnostics;
 
 namespace MinerosERP.Services
 {
@@ -384,27 +385,52 @@ namespace MinerosERP.Services
         #endregion
 
         #region REGISTRATION
-        public async Task<Registration> Register(Registration obj)
+        public async Task<bool> Register(Registration obj)
         {
             var cliente = new HttpClient();
-            Registration res = new Registration();
+            //Registration res = new Registration();
             cliente.BaseAddress = new Uri(_baseurl);
 
             var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
 
-            var response = await cliente.PostAsync($"api/registration", content);
-
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-              
-                var json_repuesta2 = await response.Content.ReadAsStringAsync();
-                var userInformation = JsonConvert.DeserializeObject<LoginResponse>(json_repuesta2);
-               res.key = userInformation.key;
-                return res;
+               var response = await cliente.PostAsync($"api/registration/", content);
+
+
+                //string  data = response.Content.ReadAsStringAsync().Result;
+                //var json_repuesta2 = await response.Content.ReadAsStringAsync();
+                //res = JsonConvert.DeserializeObject<Registration>(json_repuesta2);
+                //res = JsonConvert.DeserializeObject(<Registration>());
+                //Debug.WriteLine("Data",data);
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    //var json_repuesta2 = await response.Content.ReadAsStringAsync();
+                    //var userInformation = JsonConvert.DeserializeObject<LoginResponse>(json_repuesta2);
+                    //res.key = userInformation.key;
+                    return true;
+                }
+                else
+                {
+                    //Debug.WriteLine("EN el else", response);
+                    return false;
+                }
+
             }
-            //Aqui se debe de enviar el mensaje de error que response la api
-            return res;
+            catch (InvalidCastException e)
+            {
+                //Aqui se debe de enviar el mensaje de error que response la api
+               
+                //Debug.WriteLine("EL ERROR", e);
+                return false;
+                //return "Algo salio mal";
+            }
+
+
+
+           
         }
         #endregion
 
