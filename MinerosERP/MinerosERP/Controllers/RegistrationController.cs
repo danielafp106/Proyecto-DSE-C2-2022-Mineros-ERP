@@ -25,7 +25,7 @@ namespace MinerosERP.Controllers
 
         {
             ViewBag.error = flag; 
-ViewBag.firtsTime = firtsTime; 
+            ViewBag.firtsTime = firtsTime; 
             return View();
         }
 

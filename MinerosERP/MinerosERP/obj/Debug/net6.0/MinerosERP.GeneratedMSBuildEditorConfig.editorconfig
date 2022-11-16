@@ -8,77 +8,77 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MinerosERP
 build_property.RootNamespace = MinerosERP
-build_property.ProjectDir = C:\Users\vasqu\source\repos\danielafp106\Proyecto-de-Catedra-DSE-C2-2022\MinerosERP\MinerosERP\
+build_property.ProjectDir = Z:\DSE\PROYECTO\FF\FRONT\Proyecto-de-Catedra-DSE-C2-2022\MinerosERP\MinerosERP\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\vasqu\source\repos\danielafp106\Proyecto-de-Catedra-DSE-C2-2022\MinerosERP\MinerosERP
+build_property.MSBuildProjectDirectory = Z:\DSE\PROYECTO\FF\FRONT\Proyecto-de-Catedra-DSE-C2-2022\MinerosERP\MinerosERP
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/vasqu/source/repos/danielafp106/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Empleados/EditarEmpleadoModal.cshtml]
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Empleados/EditarEmpleadoModal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbGVhZG9zXEVkaXRhckVtcGxlYWRvTW9kYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vasqu/source/repos/danielafp106/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Empleados/Index.cshtml]
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Empleados/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbGVhZG9zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vasqu/source/repos/danielafp106/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Empleados/RegistrarEmpleadoModal.cshtml]
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Empleados/RegistrarEmpleadoModal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbGVhZG9zXFJlZ2lzdHJhckVtcGxlYWRvTW9kYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vasqu/source/repos/danielafp106/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Home/Empleado.cshtml]
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Home/Empleado.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFbXBsZWFkby5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vasqu/source/repos/danielafp106/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Home/Index.cshtml]
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vasqu/source/repos/danielafp106/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Home/Privacy.cshtml]
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vasqu/source/repos/danielafp106/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Login/Index.cshtml]
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Login/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vasqu/source/repos/danielafp106/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Marcaciones/Index.cshtml]
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Marcaciones/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FjaW9uZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vasqu/source/repos/danielafp106/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Marcaciones/IndexJefes.cshtml]
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Marcaciones/IndexJefes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FjaW9uZXNcSW5kZXhKZWZlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vasqu/source/repos/danielafp106/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Marcaciones/MarcarEntradaModal.cshtml]
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Marcaciones/MarcarEntradaModal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FjaW9uZXNcTWFyY2FyRW50cmFkYU1vZGFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vasqu/source/repos/danielafp106/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Marcaciones/VerHistorial.cshtml]
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Marcaciones/VerHistorial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FjaW9uZXNcVmVySGlzdG9yaWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vasqu/source/repos/danielafp106/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Registration/Registration.cshtml]
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Registration/Registration.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0cmF0aW9uXFJlZ2lzdHJhdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vasqu/source/repos/danielafp106/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Shared/Error.cshtml]
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vasqu/source/repos/danielafp106/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Shared/_ValidationScriptsPartial.cshtml]
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vasqu/source/repos/danielafp106/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/_ViewImports.cshtml]
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vasqu/source/repos/danielafp106/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/_ViewStart.cshtml]
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/vasqu/source/repos/danielafp106/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Shared/_Layout.cshtml]
+[Z:/DSE/PROYECTO/FF/FRONT/Proyecto-de-Catedra-DSE-C2-2022/MinerosERP/MinerosERP/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-r2x7j9y0o6

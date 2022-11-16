@@ -465,5 +465,37 @@ namespace MinerosERP.Services
             return objeto;
         }
         #endregion
+
+        #region ROLES
+        public async Task<List<Roles>> ListarRoles()
+        {
+            List<Roles> lista = new List<Roles>();
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            var response = await cliente.GetAsync("api/roles");
+            if (response.IsSuccessStatusCode)
+            {
+                var json_repuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<List<Roles>>(json_repuesta);
+                lista.AddRange(resultado);
+            }
+            return lista;
+        }
+
+        public async Task<Roles> ObtenerRol(int id)
+        {
+            Roles objeto = new Roles();
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            var response = await cliente.GetAsync($"api/roles/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var json_repuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<Roles>(json_repuesta);
+                objeto = resultado;
+            }
+            return objeto;
+        }
+        #endregion
     }
 }

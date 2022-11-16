@@ -7,8 +7,11 @@ $(function () {
     var PlaceHolderElement = $('#ContenedorModal');
     $('button[data-toggle="ajax-modal"]').click(function (event) {
         var url = $(this).data('url');
-        var decodedurl = decodeURIComponent
+        console.log(url);
+        var decodedurl = decodeURIComponent;
+        console.log(decodedurl);
         $.get(url).done(function (data) {
+            console.log("llego 1");
             PlaceHolderElement.html(data);
             PlaceHolderElement.find('.modal').modal('show');
         })
@@ -23,7 +26,10 @@ $(function () {
         disabled.attr('disabled','disabled');
         $.post(actionUrl, sendData).done(function (data){
             PlaceHolderElement.find('.modal').modal('hide');
+            var variable = "algo";
+            console.log(variable);
             top.location.href = index;
+            
         })
     })
 })
@@ -43,6 +49,9 @@ $(function () {
         }
         else {
             url = $(this).data('url');
+            url = url.replace('\'', '');
+            url = url.replace(')', '');
+            console.log(url);
         }
 
         var decodedurl = decodeURIComponent

@@ -42,5 +42,8 @@ namespace MinerosERP.Services
         Task<List<Usuarios>> ListarUsuarios();
         Task<Usuarios> ObtenerUsuario(int id);
 
+        Task<List<Roles>> ListarRoles();
+        Task<Roles> ObtenerRol(int id);
+
     }
 }

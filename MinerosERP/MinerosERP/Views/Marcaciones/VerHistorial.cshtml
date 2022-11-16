@@ -1,41 +1,102 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+
 @{
+    ViewBag.Title = "Historial de Marcaciones";
 }
 
 <div class="modal fade" tabindex="-1" id="HistoricalView" data-keyboard="false" data-backdrop="static">  
-    <div class="modal-dialog">  
+    <div class="modal-dialog modal-xl">  
         <div class="modal-content">  
             <div class="modal-header">  
                 <h4 class="modal-title">@ViewBag.Title</h4>  
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div> 
-            <div class="modal-body">  
-                <!--<form action="@Url.Action("GuardarMarcacion")">  
-                    <div class="form-group">
-                        <label asp-for="fecha_marcacion">Fecha:</label>
-                        <input asp-for="fecha_marcacion" class="form-control" type="text" disabled/>  
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="hora_entrada">Hora:</label>
-                        <input asp-for="hora_entrada" class="form-control" type="text" disabled/>  
-                    </div> 
-                    <div class="form-group">
-                        <label asp-for="tipo_marcacion">Tipo de Marcación:</label>
-                        <select asp-for="tipo_marcacion" class="form-select">
-                          <option value="Horas Laborales" selected>Horas Laborales</option>
-                          <option value="Horas Extras">Horas Extras</option>
-                          <option value="Reposición de Horas">Reposición de Horas</option>
-                        </select> 
-                    </div> 
-                    <input asp-for="id_empleado" class="form-control" type="hidden" disabled/>  
-                </form>  -->
-             </div>  
-             <div class="modal-footer">  
-                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                 <button type="button" class="btn btn-success" data-save="modal" data-index="@Url.Action("Index")">Guardar Marcación</button> 
-             </div>  
+            <div class="modal-body">
+ <div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Información del Empleado</h5>
+    <table class="table table-borderless">
+  <thead>
+    <tr>
+      <th scope="col">Nombre Completo</th>
+      <th scope="col">Usuario</th>
+      <th scope="col">Puesto</th>
+      <th scope="col">Área</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr>
+      <td>@ViewBag.Empleado.nombres_empleado @ViewBag.Empleado.apellidos_empleado</td>
+      <td>@ViewBag.Empleado.usuario</td>
+      <td>@ViewBag.Empleado.cargo_nombre</td>
+      <td>@ViewBag.Empleado.area</td>
+    </tr>
+  </tbody>
+</table>
+         
+          </div>  
+    </div>  
+
+                          
+<div class="accordion-item p-2">
+    @{int i = 1;}
+            @foreach (var item in ViewBag.DatosHistoricos)
+            {
+                <h5 class="accordion-header" id="flush-heading-@i">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-@i" aria-expanded="false" aria-controls="flush-collapse-@i">
+                        <h5>Semana: @item.Key</h5>
+                    </button>
+                </h5>
+                <div id="flush-collapse-@i" class="accordion-collapse collapse" aria-labelledby="flush-heading-@i" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <table class="table table-striped" id="historico">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Fecha Marcación</th>
+                                    <th scope="col">Hora de Entrada</th>
+                                    <th scope="col">Hora de Salida</th>
+                                    <th scope="col">Tipo de Marcación</th>
+                                    <th scope="col">Total de Horas Laboradas</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{int k =0;}
+                                @foreach (var lista in item.Value)
+                                {
+                                    k = k+1;
+                                      <tr>
+                                           
+                                            @if(k != item.Value.Count)
+                                            {
+                                              
+                                        <td><pre>@lista.fecha_marcacion.Replace('.',' ')</pre></td>
+                                        <td>@lista.hora_entrada</td>
+                                        <td>@lista.hora_salida</td>
+                                        <td>@lista.tipo_marcacion</td>
+                                        <td>@lista.total_horas</td>
+                                            }
+                                            else{
+                                         <td colspan="4">@lista.fecha_marcacion</td>
+                                        <td>@lista.total_horas</td>
+                                            }
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table></div>
+                </div>
+
+                i = i + 1;
+            }
+    
+  </div>
+</div>
         </div>  
     </div>  
-</div>
+        </div> 
+
+
+

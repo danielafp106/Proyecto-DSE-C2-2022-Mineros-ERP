@@ -42,11 +42,22 @@ namespace MinerosERP.Models
         [Required(ErrorMessage = "Campo obligatorio.")]
         public int id_area { get; set; }
 
-        [Required(ErrorMessage = "Campo obligatorio.")]
         public int id_usuario { get; set; }
+        [Required(ErrorMessage = "Campo obligatorio.")]
         public string? usuario { get; set; }
-       // public string cargo_nombre { get; set; }
-       // public long id { get; set; }
+        public string? cargo_nombre { get; set; }
+
+        public string? area { get; set; }
+        [Required(ErrorMessage = "Campo obligatorio.")]
+        public string? passwordtemp { get; set; }
+        [Required(ErrorMessage = "Campo obligatorio.")]
+        public int? idrol { get; set; }
+
+       
+        [Required(ErrorMessage = "Campo obligatorio.")]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
+        public int? email { get; set; }
 
     }
 

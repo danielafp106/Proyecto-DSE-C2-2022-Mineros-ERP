@@ -22,8 +22,10 @@ namespace MinerosERP.Controllers
             List<Empleados> empleados = await _serviciosEmpleadosAPI.ListarEmpleados();
             List<Areas> areaEmp = await _serviciosEmpleadosAPI.ListarAreas();
             List<Cargos> cargoEmp = await _serviciosEmpleadosAPI.ListarCargosEmpleados();
+            List<Roles> rolesEmp = await _serviciosEmpleadosAPI.ListarRoles();
             ViewBag.areas = areaEmp;
             ViewBag.cargos = cargoEmp;
+            ViewBag.roles = rolesEmp;
             //List<Empleados> listadoEmpleados = new List<Empleados>();
 
             return View(empleados);
@@ -33,8 +35,10 @@ namespace MinerosERP.Controllers
             Empleados obj = new Empleados();
             List<Areas> areaEmp = await _serviciosEmpleadosAPI.ListarAreas();
             List<Cargos> cargoEmp = await _serviciosEmpleadosAPI.ListarCargosEmpleados();
+            List<Roles> rolesEmp = await _serviciosEmpleadosAPI.ListarRoles();
             ViewBag.areas = areaEmp;
             ViewBag.cargos = cargoEmp;
+            ViewBag.roles = rolesEmp;
 
             return PartialView("RegistrarEmpleadoModal", obj);
         }
@@ -43,8 +47,10 @@ namespace MinerosERP.Controllers
             Empleados obj = await _serviciosEmpleadosAPI.ObtenerEmpleado(id);
             List<Areas> areaEmp = await _serviciosEmpleadosAPI.ListarAreas();
             List<Cargos> cargoEmp = await _serviciosEmpleadosAPI.ListarCargosEmpleados();
+            List<Roles> rolesEmp = await _serviciosEmpleadosAPI.ListarRoles();
             ViewBag.areas = areaEmp;
             ViewBag.cargos = cargoEmp;
+            ViewBag.roles = rolesEmp;
 
             return PartialView("EditarEmpleadoModal", obj);
         }

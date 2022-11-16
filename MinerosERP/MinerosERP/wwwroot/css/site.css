@@ -28,3 +28,9 @@ pre {
     margin: 0;
     box-sizing: border-box;
 }
+
+#historico > tbody > tr:last-child {
+    font-weight: bold;
+}
+
+

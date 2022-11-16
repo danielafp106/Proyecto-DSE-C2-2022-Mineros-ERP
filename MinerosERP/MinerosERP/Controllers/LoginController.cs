@@ -37,7 +37,8 @@ namespace MinerosERP.Controllers
                 HttpContext.Session.SetInt32("id_usuario", result.pk);
                 HttpContext.Session.SetInt32("id_empleado", currentEmpleado.id_empleado);
                 HttpContext.Session.SetString("username", result.username.ToString());
-                HttpContext.Session.SetString("full_name", $"{result.first_name} {result.last_name}".ToString());               
+                string[] nombres = currentEmpleado.nombres_empleado.Split(' ');
+                HttpContext.Session.SetString("full_name", $"{nombres[0]} {currentEmpleado.apellidos_empleado}".ToString());               
                 return RedirectToAction("Index", "Home");
             }
             else

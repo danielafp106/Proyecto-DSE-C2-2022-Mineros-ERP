@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MinerosERP</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MinerosERP.styles.css" asp-append-version="true" />
@@ -13,8 +13,8 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="~/resources/logo/v3.png"
-                         style="width: 75px; height: 65px" alt="logo">
+                    <img src="~/resources/logo/v3.png" alt="Mineros ERP" width="35" height="31" class="d-inline-block align-text-top">
+                    <b>Mineros ERP</b>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -31,12 +31,10 @@
                       
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Registration" asp-action="Registration">Registrar empleado</a>
-                        </li>
-                         <li class="nav-item">
-                            <p>@ViewData["pk"] - @ViewData["user"] - @ViewData["full_name"]</p>
-                        </li>
-                    </ul>
+                        </li>                                               
 
+                    </ul>
+                     <a class="nav-link text-dark"  asp-area="" asp-controller="Registration" asp-action="Registration" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Usuario: @ViewData["user"]"><b style="color:#007bff;">@ViewData["name"]</b></a>
                     <a class="btn btn-outline-secondary text-dark float-right" asp-area="" asp-controller="Login" asp-action="Logout">Cerrar sesión</a>
                   
                 </div>
@@ -59,5 +57,11 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+    </script>
 </body>
 </html>

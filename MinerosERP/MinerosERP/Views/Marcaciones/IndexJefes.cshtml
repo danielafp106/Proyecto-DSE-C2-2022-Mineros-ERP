@@ -5,6 +5,8 @@
 }
 <div id="ContenedorModal"></div>
 <div id="ContenedorModal2"></div>
+
+
 <div class="card-body">
                         <!-- TAB -->
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -68,31 +70,12 @@
     }
   </tbody>
 </table>
+               <button type="button"
+     class="btn btn-primary" id="btnHistoricosCurrentUser" 
+     data-toggle="ajax-modal-h" data-target="#HistoricalView" 
+     data-url="@Url.Action("VerHistorial","Marcaciones", new {id = @ViewData["id_empleado"]})')"><b>Ver Historial</b></button>   
 <br />
-<h5>Histórico de Marcaciones</h5>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Fecha Marcación</th>
-      <th scope="col">Hora de Entrada</th>
-      <th scope="col">Hora de Salida</th>
-      <th scope="col">Total de Horas Laboradas</th>
-      <th scope="col">Tipo de Marcación</th>
-    </tr>
-  </thead>
-  <tbody>
-      @foreach(var item in ViewBag.TodasMarcaciones)
-    {
-           <tr>
-          <td><pre>@item.fecha_marcacion.Replace('.',' ')</pre></td>
-          <td>@item.hora_entrada</td>
-          <td>@item.hora_salida</td>
-          <td>@item.total_horas</td>
-          <td>@item.tipo_marcacion</td>
-        </tr>
-    }
-  </tbody>
-</table>
+
                             </div>
                             <div class="tab-pane fade p-3" id="new-grados" role="tabpanel" aria-labelledby="new-tab">
                                 <!-- CONTENIDO-->
