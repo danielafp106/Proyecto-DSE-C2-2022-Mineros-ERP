@@ -1,6 +1,5 @@
 ﻿@model Empleados
 @{
-    ViewBag.Title = "Editar Empleado";
 }
 <div class="modal fade" tabindex="-1" id="EditarEmpleado" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
@@ -20,7 +19,7 @@
                         <div class="col-md-6 col-sm-12  mt-2 mb-2">
                             <label asp-for="nombres_empleado" class="form-label required" >Nombres Empleado</label>
                             <input type="text" class="form-control validate" asp-for="nombres_empleado"
-                                   placeholder="Daniel Wilfredo" id="nombres">
+                                   placeholder="Daniel Wilfredo" id="nombres" disabled>
                                     <span asp-validation-for="nombres_empleado" class="text-danger"></span>
                         </div>
                         <div class="col-md-6 col-sm-12  mt-2 mb-2">
@@ -35,12 +34,12 @@
                          <div class="col-md-6 col-sm-12   mt-2 mb-2">
                             <label asp-for="apellidos_empleado" class="form-label" >Apellidos Empleado</label>
                             <input type="text" class="form-control validate" asp-for="apellidos_empleado"
-                               placeholder="Granados Hernandez"  id="apellidos"> 
+                               placeholder="Granados Hernandez"  id="apellidos" disabled> 
                                <span asp-validation-for="apellidos_empleado" class="text-danger"></span>
                         </div>
                           <div class="col-md-6 col-sm-12  mt-2 mb-2">
                             <label asp-for="email" class="form-label">Correo Eléctronico</label>
-                            <input type="text" id="emailInput" class="form-control validate" asp-for="email" placeholder="email@dominio.com">
+                            <input type="text" id="emailInput" class="form-control validate" disabled asp-for="email" placeholder="email@dominio.com">
                                     <span asp-validation-for="email" class="text-danger"></span>
                         </div>
                     </div>
@@ -48,13 +47,13 @@
                         <div class="col-md-6 col-sm-12   mt-2 mb-2">
                             <label asp-for="dui_empleado" class="form-label">DUI Empleado</label>
                             <input type="text" class="form-control validate" asp-for="dui_empleado"
-                                   placeholder="Digite DUI sin guión: 000000000">
+                                   placeholder="Digite DUI sin guión: 000000000" disabled>
                                     <span asp-validation-for="dui_empleado" class="text-danger"></span>
                         </div>
                        <div class="col-md-6 col-sm-12  mt-2 mb-2">
                             <label asp-for="fecha_nacimiento_empleado" class="form-label">Fecha Nacimiento Empleado</label>
                             <input type="date" class="form-control validate" asp-for="fecha_nacimiento_empleado"
-                                   placeholder="00-00-0000">
+                                   placeholder="00-00-0000" disabled>
                                     <span asp-validation-for="fecha_nacimiento_empleado" class="text-danger"></span>
                         </div>
                         
@@ -65,7 +64,7 @@
                         <div class="col-md-6 col-sm-12   mt-2 mb-2">
                             <label asp-for="telefono_empleado" class="form-label">Telefono Empleado</label>
                             <input type="text" class="form-control validate" asp-for="telefono_empleado"
-                                   placeholder="2222-2222">
+                                   placeholder="2222-2222" disabled>
                                     <span asp-validation-for="telefono_empleado" class="text-danger"></span>
                         </div>
                            <div class="col-md-6 col-sm-12  mt-2 mb-2">
@@ -73,7 +72,7 @@
                                <div class="input-group">                           
                             <span class="input-group-text">$</span>
                             <input type="text" class="form-control validate" asp-for="sueldo_empleado"
-                                   placeholder="0000.00"> </div>
+                                   placeholder="0000.00" disabled> </div>
                                     <span asp-validation-for="sueldo_empleado" class="text-danger"></span>
                                    
                         </div>
@@ -82,7 +81,7 @@
                         <div class="col-md-12 col-sm-12  mt-2 mb-2">
                             <label asp-for="direccion_empleado" class="form-label">Dirección Empleado</label>
                             <input type="text" class="form-control validate" asp-for="direccion_empleado"
-                                   placeholder="Residencial Villanueva, casa #14, Soyapango, San Salvador">
+                                   placeholder="Residencial Villanueva, casa #14, Soyapango, San Salvador" disabled>
                                     <span asp-validation-for="direccion_empleado" class="text-danger"></span>
                         </div>                    
                     </div>
@@ -90,13 +89,13 @@
                         <div class="col-md-6 col-sm-12  mt-2 mb-2">
                             <label asp-for="numero_isss_empleado" class="form-label">ISSS Empleado</label>
                             <input type="text" class="form-control validate" asp-for="numero_isss_empleado"
-                                   placeholder="0000000000">
+                                   placeholder="0000000000" disabled>
                                     <span asp-validation-for="numero_isss_empleado" class="text-danger"></span>
                         </div>
                         <div class="col-md-6 col-sm-12   mt-2 mb-2">
                             <label asp-for="numero_afp_empleado" class="form-label">AFP Empleado</label>
                             <input type="text" class="form-control validate" asp-for="numero_afp_empleado"
-                                   placeholder="0000000000000">
+                                   placeholder="0000000000000" disabled>
                                     <span asp-validation-for="numero_afp_empleado" class="text-danger"></span>
                         </div>
                     </div>
@@ -104,7 +103,7 @@
                         
                         <div class="col-md-6 col-sm-12   mt-2 mb-2">
                             <label asp-for="id_area" class="form-label">Área Empleado</label>
-                            <select asp-for="id_area" class="form-select">
+                            <select asp-for="id_area" class="form-select" disabled>
                                 <option value="">--- Seleccionar Area ---</option>
                                 @foreach (Areas area in ViewBag.areas)
                                 {
@@ -116,7 +115,7 @@
                         </div>
                         <div class="col-md-6 col-sm-12   mt-2 mb-2">
                             <label asp-for="id_cargo_empleado" class="form-label">Cargo Empleado</label>
-                            <select asp-for="id_cargo_empleado" class="form-select">
+                            <select asp-for="id_cargo_empleado" class="form-select" disabled>
                                 <option value="">--- Seleccionar Cargo ---</option>
                                 @foreach (Cargos cargo in ViewBag.cargos)
                                 {
@@ -132,8 +131,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success" data-save="modal" data-index="@Url.Action("Index")">Editar Empleado</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

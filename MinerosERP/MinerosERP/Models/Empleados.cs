@@ -50,14 +50,12 @@ namespace MinerosERP.Models
         public string? area { get; set; }
         [Required(ErrorMessage = "Campo obligatorio.")]
         public string? passwordtemp { get; set; }
-        [Required(ErrorMessage = "Campo obligatorio.")]
-        public int? idrol { get; set; }
 
        
         [Required(ErrorMessage = "Campo obligatorio.")]
         [DataType(DataType.EmailAddress)]
         [EmailAddress]
-        public int? email { get; set; }
+        public string? email { get; set; }
 
     }
 

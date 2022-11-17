@@ -721,3 +721,10 @@ Z:\DSE\PROYECTO\FF\FRONT\Proyecto-de-Catedra-DSE-C2-2022\MinerosERP\MinerosERP\o
 Z:\DSE\PROYECTO\FF\FRONT\Proyecto-de-Catedra-DSE-C2-2022\MinerosERP\MinerosERP\obj\Debug\net6.0\MinerosERP.pdb
 Z:\DSE\PROYECTO\FF\FRONT\Proyecto-de-Catedra-DSE-C2-2022\MinerosERP\MinerosERP\obj\Debug\net6.0\MinerosERP.genruntimeconfig.cache
 Z:\DSE\PROYECTO\FF\FRONT\Proyecto-de-Catedra-DSE-C2-2022\MinerosERP\MinerosERP\obj\Debug\net6.0\ref\MinerosERP.dll
+Z:\DSE\PROYECTO\FF\FRONT\Proyecto-de-Catedra-DSE-C2-2022\MinerosERP\MinerosERP\bin\Debug\net6.0\System.Web.Mvc.dll
+Z:\DSE\PROYECTO\FF\FRONT\Proyecto-de-Catedra-DSE-C2-2022\MinerosERP\MinerosERP\bin\Debug\net6.0\System.Web.Razor.dll
+Z:\DSE\PROYECTO\FF\FRONT\Proyecto-de-Catedra-DSE-C2-2022\MinerosERP\MinerosERP\bin\Debug\net6.0\System.Web.Helpers.dll
+Z:\DSE\PROYECTO\FF\FRONT\Proyecto-de-Catedra-DSE-C2-2022\MinerosERP\MinerosERP\bin\Debug\net6.0\System.Web.WebPages.Deployment.dll
+Z:\DSE\PROYECTO\FF\FRONT\Proyecto-de-Catedra-DSE-C2-2022\MinerosERP\MinerosERP\bin\Debug\net6.0\System.Web.WebPages.Razor.dll
+Z:\DSE\PROYECTO\FF\FRONT\Proyecto-de-Catedra-DSE-C2-2022\MinerosERP\MinerosERP\bin\Debug\net6.0\System.Web.WebPages.dll
+Z:\DSE\PROYECTO\FF\FRONT\Proyecto-de-Catedra-DSE-C2-2022\MinerosERP\MinerosERP\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll

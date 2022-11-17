@@ -8,8 +8,11 @@
             <div class="modal-header">
                 <h4 class="modal-title">@ViewBag.Title</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+            </div>                                    
+                        <div class="alert alert-danger" role="alert" id="erroresEmp" style="display:none;"></div>
             <div class="modal-body m-2">
+
+                
                 <form action="@Url.Action("GuardarEmpleado")">
                    
                     <input asp-for="id_usuario" class="form-control" type="hidden" value="2" />
@@ -20,25 +23,40 @@
                                    placeholder="Daniel Wilfredo" onchange="    changeFlagN();  setUserandPass()" id="nombres">
                                     <span asp-validation-for="nombres_empleado" class="text-danger"></span>
                         </div>
-                        <div class="col-md-6 col-sm-12   mt-2 mb-2">
+                        <div class="col-md-6 col-sm-12  mt-2 mb-2">
+                            <label asp-for="usuario" class="form-label">Usuario</label>
+                            <input type="text" class="form-control validate" asp-for="usuario" disabled id="user">
+                                    <span asp-validation-for="usuario" class="text-danger"></span>
+                        </div>
+                       
+                    </div>      
+                    
+                    <div class="row">
+                         <div class="col-md-6 col-sm-12   mt-2 mb-2">
                             <label asp-for="apellidos_empleado" class="form-label" >Apellidos Empleado</label>
                             <input type="text" class="form-control validate" asp-for="apellidos_empleado"
                                placeholder="Granados Hernandez" onchange="    changeFlagL();  setUserandPass()" id="apellidos"> 
                                <span asp-validation-for="apellidos_empleado" class="text-danger"></span>
                         </div>
-                    </div>                   
-                    <div class="row">
-                         <div class="col-md-6 col-sm-12  mt-2 mb-2">
-                            <label asp-for="email" class="form-label">Correo Eléctronico</label>
-                            <input type="text" class="form-control validate" asp-for="email" placeholder="email@dominio.com">
-                                    <span asp-validation-for="email" class="text-danger"></span>
+                        <div class="col-md-6 col-sm-12  mt-2 mb-2">
+                            <label asp-for="passwordtemp" class="form-label">Contraseña Temporal</label>
+                            <input type="text" class="form-control validate" asp-for="passwordtemp" disabled id="pass">
+                                    <span asp-validation-for="passwordtemp" class="text-danger"></span>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6 col-sm-12   mt-2 mb-2">
                             <label asp-for="dui_empleado" class="form-label">DUI Empleado</label>
                             <input type="text" class="form-control validate" asp-for="dui_empleado"
-                                   placeholder="00000000-0">
+                                   placeholder="Digite DUI sin guión: 000000000">
                                     <span asp-validation-for="dui_empleado" class="text-danger"></span>
                         </div>
+                         <div class="col-md-6 col-sm-12  mt-2 mb-2">
+                            <label asp-for="email" class="form-label">Correo Eléctronico</label>
+                            <input type="text" id="emailInput" class="form-control validate" asp-for="email" placeholder="email@dominio.com">
+                                    <span asp-validation-for="email" class="text-danger"></span>
+                        </div>
+                        
                     </div>
 
                     <div class="row">
@@ -78,14 +96,9 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 col-sm-12  mt-2 mb-2">
-                            <label asp-for="sueldo_empleado" class="form-label">Sueldo Empleado</label>
-                            <input type="text" class="form-control validate" asp-for="sueldo_empleado"
-                                   placeholder="0000.00">
-                                    <span asp-validation-for="sueldo_empleado" class="text-danger"></span>
-                        </div>
+                        
                         <div class="col-md-6 col-sm-12   mt-2 mb-2">
-                            <label asp-for="id_area" class="form-label">Cargo Empleado</label>
+                            <label asp-for="id_area" class="form-label">Área Empleado</label>
                             <select asp-for="id_area" class="form-select">
                                 <option value="">--- Seleccionar Area ---</option>
                                 @foreach (Areas area in ViewBag.areas)
@@ -96,8 +109,6 @@
                             </select>
                              <span asp-validation-for="id_area" class="text-danger"></span>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-6 col-sm-12   mt-2 mb-2">
                             <label asp-for="id_cargo_empleado" class="form-label">Cargo Empleado</label>
                             <select asp-for="id_cargo_empleado" class="form-select">
@@ -110,48 +121,25 @@
                             </select>
                              <span asp-validation-for="id_cargo_empleado" class="text-danger"></span>
                         </div>
-                        <div class="col-md-6 col-sm-12  mt-2 mb-2">
-                            <label asp-for="usuario" class="form-label">Usuario</label>
-                            <input type="text" class="form-control validate" asp-for="usuario" disabled id="user">
-                                    <span asp-validation-for="usuario" class="text-danger"></span>
-                        </div>
                     </div>
-
                     <div class="row">
-                        <div class="col-md-6 col-sm-12   mt-2 mb-2">
-                            <label asp-for="idrol" class="form-label">Rol de Usuario</label>
-                            <select asp-for="idrol" class="form-select">
-                                @foreach (Roles cargo in ViewBag.roles)
-                                {
-                                    if(@cargo.id_rol_usuario!=1)
-                                    {
-                                        if(@cargo.rol_usuario == "Usuario")
-                                        {
-                                            <option value="@cargo.id_rol_usuario" selected>@cargo.rol_usuario</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@cargo.id_rol_usuario">@cargo.rol_usuario</option>
-                                        }
-                                        
-                                    }          
-                                }
-
-                            </select>
-                             <span asp-validation-for="idrol" class="text-danger"></span>
-                        </div>
                         <div class="col-md-6 col-sm-12  mt-2 mb-2">
-                            <label asp-for="passwordtemp" class="form-label">Contraseña Temporal</label>
-                            <input type="text" class="form-control validate" asp-for="passwordtemp" disabled id="pass">
-                                    <span asp-validation-for="passwordtemp" class="text-danger"></span>
+                            <label asp-for="sueldo_empleado" class="form-label">Sueldo Empleado</label>
+                          <div class="input-group">                           
+                            <span class="input-group-text">$</span>
+                            <input type="text" class="form-control validate" asp-for="sueldo_empleado"
+                                   placeholder="0000.00"> </div>
+                                    <span asp-validation-for="sueldo_empleado" class="text-danger"></span>
                         </div>
+                        
                     </div>
+
 
 
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-success" data-save="modal" data-index="@Url.Action("Index")">Guardar Empleado</button>
             </div>
         </div>
@@ -199,8 +187,8 @@ function setUserandPass()
     {
         var nombres = inputNombres.value.split(' ');
         var apellidos = inputApellidos.value.split(' ');
-        var username = nombres[0].toLowerCase() + '' + apellidos[0].toLowerCase();
-        inputUsuario.value = username;
+        var username = nombres[0].toLowerCase() + '.' + apellidos[0].toLowerCase() + apellidos[1].toLowerCase().substring(0,2);
+        inputUsuario.value = removeaccents(username).replace('-','.');
         inputContra.value = makeid(8);
 
     }
@@ -214,5 +202,13 @@ function makeid(length) {
         result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
+}
+
+function removeaccents(word)
+{
+    return word.normalize('NFD').replace(/[\u0300-\u036f]/g, '') // Remove accents
+		.replace(/([^\w]+|\s+)/g, '-') // Replace space and other characters by hyphen
+		.replace(/\-\-+/g, '-')	// Replaces multiple hyphens by one hyphen
+		.replace(/(^-+|-+$)/g, ''); 
 }
 </script>

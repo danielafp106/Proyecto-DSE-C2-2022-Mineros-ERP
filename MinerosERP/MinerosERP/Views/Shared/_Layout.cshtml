@@ -34,7 +34,9 @@
                         </li>                                               
 
                     </ul>
-                     <a class="nav-link text-dark"  asp-area="" asp-controller="Registration" asp-action="Registration" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Usuario: @ViewData["user"]"><b style="color:#007bff;">@ViewData["name"]</b></a>
+                     <a class="nav-link text-dark btn"
+                                    data-toggle="ajax-modal" data-target="#EditarEmpleado"
+                                    data-url="@Url.Action("VerEmpleadoModal" ,"Empleados", new {id =@ViewData["id_empleado"]})" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Usuario: @ViewData["user"]"><b style="color:#007bff;">@ViewData["name"]</b></a>
                     <a class="btn btn-outline-secondary text-dark float-right" asp-area="" asp-controller="Login" asp-action="Logout">Cerrar sesión</a>
                   
                 </div>
@@ -43,6 +45,8 @@
     </header>
 
     <div class="container">
+        <div id="ContenedorModal"></div>
+        <div id="ContenedorModal2"></div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
