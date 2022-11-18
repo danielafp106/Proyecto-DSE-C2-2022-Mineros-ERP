@@ -92,7 +92,7 @@ $(function () {
 })
 
 $(function () {
-    var PlaceHolderElement = $('#ContenedorModal');
+    var PlaceHolderElement = $('#ContenedorModal3');
     $('a[data-toggle="ajax-modal"]').click(function (event) {
         var url = $(this).data('url');
         console.log(url);

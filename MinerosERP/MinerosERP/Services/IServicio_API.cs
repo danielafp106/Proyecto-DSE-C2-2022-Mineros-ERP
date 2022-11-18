@@ -34,6 +34,7 @@ namespace MinerosERP.Services
 
         //LOGIN 
         Task<LoginResponse> Login(Login Objeto);
+        Task<bool> GuardarContrasena(Registration Objeto);
 
         //REGISTRATION
         Task<bool> Register(Registration Objeto);

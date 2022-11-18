@@ -9,6 +9,7 @@
                 <h4 class="modal-title">@ViewBag.Title</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+             <div class="alert alert-danger" role="alert" id="erroresEmp" style="display:none;"></div>
             <div class="modal-body">
                 <form action="@Url.Action("EditarEmpleado", "Empleados",new {id = Model.id_empleado})"
                     >

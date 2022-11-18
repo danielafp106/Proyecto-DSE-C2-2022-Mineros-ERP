@@ -24,13 +24,13 @@ namespace MinerosERP.Controllers
                 {
                     ViewBag.resultado = Convert.ToBoolean(TempData["resultado"]);
                     ViewBag.mensajeResultado = TempData["mensajeResultado"].ToString();
-                    TempData["resultado"] = ViewBag.resultado;
-                    TempData["mensajeResultado"] = ViewBag.mensajeResultado;
                 }
                 ViewData["user"] = HttpContext.Session.GetString("username").ToString();
                 ViewData["name"] = HttpContext.Session.GetString("full_name").ToString();
                 ViewData["pk"] = HttpContext.Session.GetInt32("id_usuario").ToString();
                 ViewData["id_empleado"] = HttpContext.Session.GetInt32("id_empleado").ToString();
+                ViewData["id_cargo"] = HttpContext.Session.GetInt32("id_cargo").ToString();
+                ViewData["key"] = HttpContext.Session.GetInt32("key").ToString();
                 bool HayMarcacionAbierta = false;
                 DateTime LunesDeSemanaActual = DateTime.Today;
                 while (LunesDeSemanaActual.DayOfWeek != DayOfWeek.Monday)
@@ -109,11 +109,19 @@ namespace MinerosERP.Controllers
         {
             try
             {
+                if (TempData["resultado"] != null && TempData["mensajeResultado"] != null)
+                {
+                    ViewBag.resultado = Convert.ToBoolean(TempData["resultado"]);
+                    ViewBag.mensajeResultado = TempData["mensajeResultado"].ToString();
+                }
                 ViewData["user"] = HttpContext.Session.GetString("username").ToString();
                 ViewData["name"] = HttpContext.Session.GetString("full_name").ToString();
                 ViewData["pk"] = HttpContext.Session.GetInt32("id_usuario").ToString();
                 ViewData["id_empleado"] = HttpContext.Session.GetInt32("id_empleado").ToString();
+                ViewData["id_cargo"] = HttpContext.Session.GetInt32("id_cargo").ToString();
+                ViewData["key"] = HttpContext.Session.GetInt32("key").ToString();
                 int currentIdEmpleado = Convert.ToInt32(HttpContext.Session.GetInt32("id_empleado").ToString());
+                int currentCargo = Convert.ToInt32(HttpContext.Session.GetInt32("id_cargo").ToString());
                 Empleados currenEmpleado = await _serviciosEmpleadosAPI.ObtenerEmpleado(currentIdEmpleado);
                 bool HayMarcacionAbierta = false;
                 DateTime LunesDeSemanaActual = DateTime.Today;
@@ -138,7 +146,10 @@ namespace MinerosERP.Controllers
                                     select i;
                 marcaciones = listaOrdenada.ToList();
                 List<Empleados> allEmpleados = await _serviciosEmpleadosAPI.ListarEmpleados();
-                allEmpleados = allEmpleados.Where(x=>x.id_area == currenEmpleado.id_area).ToList();
+                if (currentCargo == 7 || currentCargo == 1)
+                {
+                    allEmpleados = allEmpleados.Where(x => x.id_area == currenEmpleado.id_area).ToList();
+                }
                 List<Usuarios> allUsuarios = await _serviciosEmpleadosAPI.ListarUsuarios();
                 List<SelectEmpleados> ListEmpleados = new List<SelectEmpleados>();
                 //Sacando horas trabajadas x cada registro
@@ -184,11 +195,53 @@ namespace MinerosERP.Controllers
                     }
                     else
                     {
-                        if(Convert.ToInt32(allEmpleados.Where(x => x.id_empleado == item.id_empleado).Select(x=>x.id_area).FirstOrDefault())== currenEmpleado.id_area)
-                        {              
+                        if (currentCargo == 7 || currentCargo == 1)
+                        {
+                            if (Convert.ToInt32(allEmpleados.Where(x => x.id_empleado == item.id_empleado).Select(x => x.id_area).FirstOrDefault()) == currenEmpleado.id_area)
+                            {
+                                int id_usuario = Convert.ToInt32(allEmpleados.Where(x => x.id_empleado == item.id_empleado).Select(x => x.id_usuario).FirstOrDefault());
+                                string usuario = allUsuarios.Where(x => x.id == id_usuario).Select(x => x.username).FirstOrDefault().ToString();
+                                item.username = usuario;
+                                if (horaEntrada == horaSalida)
+                                {
+                                    item.hora_salida = "";
+                                    if (horaEntrada >= LunesDeSemanaActual && horaEntrada <= DomingoDeSemanaActual)
+                                    {
+                                        semanaactualEmpleados.Add(item);
+                                        marcaciones.RemoveAll(i => i.id_marcacion == item.id_marcacion);
+                                    }
+                                }
+                                else
+                                {
+                                    TimeSpan result = horaSalida.Subtract(horaEntrada);
+                                    if (result.Hours > 5)
+                                    {
+                                        result = result.Subtract(new TimeSpan(0, 60, 0)); //Restando Hora de almuerzo     
+                                    }
+                                    item.total_horas = $"{result:%h} horas {result:%m} minutos";
+
+                                    if (horaEntrada >= LunesDeSemanaActual && horaEntrada <= DomingoDeSemanaActual)
+                                    {
+                                        semanaactualEmpleados.Add(item);
+                                        marcaciones.RemoveAll(i => i.id_marcacion == item.id_marcacion);
+                                    }
+                                    else
+                                    {
+                                        marcacionesEmpleados.Add(item);
+                                        marcaciones.RemoveAll(i => i.id_marcacion == item.id_marcacion);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                marcaciones.RemoveAll(i => i.id_marcacion == item.id_marcacion);
+                            }
+                        }
+                        else
+                        {
                             int id_usuario = Convert.ToInt32(allEmpleados.Where(x => x.id_empleado == item.id_empleado).Select(x => x.id_usuario).FirstOrDefault());
                             string usuario = allUsuarios.Where(x => x.id == id_usuario).Select(x => x.username).FirstOrDefault().ToString();
-                            item.username = usuario;                           
+                            item.username = usuario;
                             if (horaEntrada == horaSalida)
                             {
                                 item.hora_salida = "";
@@ -219,10 +272,7 @@ namespace MinerosERP.Controllers
                                 }
                             }
                         }
-                        else
-                        {
-                            marcaciones.RemoveAll(i => i.id_marcacion == item.id_marcacion);
-                        }
+                        
                         
                     }
                     
@@ -241,6 +291,10 @@ namespace MinerosERP.Controllers
                         });
                     }                    
                 }
+                var listaOrd = from i in ListEmpleados
+                                    orderby i.username ascending
+                                    select i;
+                ListEmpleados = listaOrd.ToList();
                 ViewBag.AllEmpleados = ListEmpleados.DistinctBy(x=>x.id_empleado);
                 ViewBag.HayMarcacionAbierta = HayMarcacionAbierta;
                 ViewBag.TodasMarcaciones = marcaciones;
@@ -258,6 +312,7 @@ namespace MinerosERP.Controllers
         }
         public ActionResult MarcarEntradaModal()
         {
+            ViewData["id_cargo"] = HttpContext.Session.GetInt32("id_cargo").ToString();
             Marcaciones obj = new Marcaciones();
             obj.fecha_marcacion = DateTime.Today.ToString("yyyy-M-dd");
             obj.hora_entrada = DateTime.Now.ToString("hh:mm tt", CultureInfo.InvariantCulture);
@@ -267,23 +322,40 @@ namespace MinerosERP.Controllers
         }
         public async Task<IActionResult> GuardarMarcacion(Marcaciones obj)
         {
+            int id_cargo = Convert.ToInt32(HttpContext.Session.GetInt32("id_cargo").ToString());
             obj.fecha_marcacion = DateTime.Today.ToString("yyyy-M-dd");
             obj.hora_entrada = DateTime.Now.ToString("hh:mm:ss tt", CultureInfo.InvariantCulture);
             obj.hora_salida = obj.hora_entrada;
-            TempData["resultado"] = await _serviciosEmpleadosAPI.GuardarMarcacion(obj);
-            TempData["mensajeResultado"] = Convert.ToBoolean(TempData["resultado"]) == true ? "Marcación de entrada registrada con éxito" : "Algo salió mal, inténtelo de nuevo";
-            ViewBag.resultado = Convert.ToBoolean(TempData["resultado"]);
-            ViewBag.mensajeResultado = Convert.ToBoolean(TempData["resultado"]) == true ? "Marcación de entrada registrada con éxito" : "Algo salió mal, inténtelo de nuevo";
-            return RedirectToAction("Index");
+            bool resultado = await _serviciosEmpleadosAPI.GuardarMarcacion(obj);
+            TempData["resultado"] = resultado;
+            if (resultado == true)
+            {
+                TempData["mensajeResultado"] = "Marcación de entrada registrada con éxito";
+                return Json(new { success = true, responseText = "Your message successfuly sent!" });
+            }
+            else
+            {
+                TempData["mensajeResultado"] = "Algo salió mal, vuelva a intentarlo";
+                throw new Exception("Algo salió mal, vuelva a intentarlo");
+            }
         }
         public async Task<IActionResult> MarcarSalida(int id)
         {
+            int id_cargo = Convert.ToInt32(HttpContext.Session.GetInt32("id_cargo").ToString());
             Marcaciones obj = await _serviciosEmpleadosAPI.ObtenerMarcacion(id);
             obj.hora_salida = DateTime.Now.ToString("hh:mm:ss tt", CultureInfo.InvariantCulture);
             TempData["resultado"] = await _serviciosEmpleadosAPI.EditarMarcacion(id, obj);
             TempData["mensajeResultado"] = Convert.ToBoolean(TempData["resultado"]) == true ? "Marcación de salida registrada con éxito" : "Algo salió mal, inténtelo de nuevo";
-            TempData["number"] =1;
-            return RedirectToAction("Index");
+            string route = "";
+            if(id_cargo == 6 || id_cargo == 9 || id_cargo == 1 || id_cargo == 7)
+            {
+                route = "IndexJefes";
+            }
+            else
+            {
+                route = "Index";
+            }
+            return RedirectToAction(route);
         }
 
         public async Task<IActionResult> VerHistorial(int id)
@@ -349,16 +421,18 @@ namespace MinerosERP.Controllers
                 TimeSpan totalSemana = new TimeSpan();
                 foreach (Marcaciones mar in item.Value)
                 {
-                    string fecha = DateTime.Today.ToString("yyyy-M-dd");
-                    DateTime horaEntrada = DateTime.ParseExact($"{fecha} {mar.hora_entrada}", "yyyy-M-dd hh:mm tt", CultureInfo.InvariantCulture);
-                    DateTime horaSalida = DateTime.ParseExact($"{fecha} {mar.hora_salida}", "yyyy-M-dd hh:mm tt", CultureInfo.InvariantCulture);
-                    TimeSpan result = horaSalida.Subtract(horaEntrada);
-                    if (result.Hours > 5)
+                    if (mar.hora_salida != "")
                     {
-                        result = result.Subtract(new TimeSpan(0, 60, 0)); //Restando Hora de almuerzo
-                    }
-                    totalSemana = totalSemana + result;
-
+                        string fecha = DateTime.Today.ToString("yyyy-M-dd");
+                        DateTime horaEntrada = DateTime.ParseExact($"{fecha} {mar.hora_entrada}", "yyyy-M-dd hh:mm tt", CultureInfo.InvariantCulture);
+                        DateTime horaSalida = DateTime.ParseExact($"{fecha} {mar.hora_salida}", "yyyy-M-dd hh:mm tt", CultureInfo.InvariantCulture);
+                        TimeSpan result = horaSalida.Subtract(horaEntrada);
+                        if (result.Hours > 5)
+                        {
+                            result = result.Subtract(new TimeSpan(0, 60, 0)); //Restando Hora de almuerzo
+                        }
+                        totalSemana = totalSemana + result;
+                    }                  
                 }
                 item.Value.Add(new Marcaciones()
                 {

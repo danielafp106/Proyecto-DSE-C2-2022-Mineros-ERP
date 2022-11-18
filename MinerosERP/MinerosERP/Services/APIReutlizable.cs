@@ -382,6 +382,24 @@ namespace MinerosERP.Services
             //Aqui se debe de enviar el mensaje de error que response la api
             return user;
         }
+
+        public async Task<bool> GuardarContrasena(Registration EmpObjeto)
+        {
+            bool resultado = false;
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            cliente.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", EmpObjeto.key);
+
+            var content = new StringContent(JsonConvert.SerializeObject(EmpObjeto), Encoding.UTF8, "application/json");
+            var response = await cliente.PostAsync($"api/authentication/password/change/", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                resultado = true;
+            }
+
+            return resultado;
+        }
         #endregion
 
         #region REGISTRATION
@@ -497,5 +515,6 @@ namespace MinerosERP.Services
             return objeto;
         }
         #endregion
+
     }
 }

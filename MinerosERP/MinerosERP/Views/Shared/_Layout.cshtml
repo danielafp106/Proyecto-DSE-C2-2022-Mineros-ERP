@@ -21,23 +21,39 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    @if(Convert.ToInt32(ViewData["id_cargo"]) == 6 ||Convert.ToInt32(ViewData["id_cargo"]) == 9 || Convert.ToInt32(ViewData["id_cargo"]) == 1 ||Convert.ToInt32(ViewData["id_cargo"]) == 7)
+                    {
+                        <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Empleados" asp-action="Index">Módulo Empleados</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Marcaciones" asp-action="IndexJefes">Módulo Marcaciones</a>
-                        </li>
-                      
+                        </li>                                                                   
+                        </ul>
+                    }
+                    else
+                    {
+                         <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Registration" asp-action="Registration">Registrar empleado</a>
-                        </li>                                               
-
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Marcaciones" asp-action="Index">Módulo Marcaciones</a>
+                        </li>                                                                   
                     </ul>
-                     <a class="nav-link text-dark btn"
+                    }
+                   
+                    <div class="dropdown">
+                     <a class="nav-link btn dropdown-toggle"
+                                    data-bs-toggle="dropdown" data-bs-placement="bottom" title="Usuario: @ViewData["user"]"><b style="color:#007bff;">@ViewData["name"]</b></a>
+                     <ul class="dropdown-menu">
+    <li> <a class="dropdown-item"
                                     data-toggle="ajax-modal" data-target="#EditarEmpleado"
-                                    data-url="@Url.Action("VerEmpleadoModal" ,"Empleados", new {id =@ViewData["id_empleado"]})" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Usuario: @ViewData["user"]"><b style="color:#007bff;">@ViewData["name"]</b></a>
-                    <a class="btn btn-outline-secondary text-dark float-right" asp-area="" asp-controller="Login" asp-action="Logout">Cerrar sesión</a>
+                                    data-url="@Url.Action("VerEmpleadoModal" ,"Empleados", new {id =@ViewData["id_empleado"]})">Mi Ficha de Empleado</a></li>
+    <li><a class="dropdown-item" data-toggle="ajax-modal" data-target="#CambiarContrasena"
+                                    data-url="@Url.Action("CambiarContrasena" ,"Login")">Cambiar contraseña</a></li>
+    <li><a class="dropdown-item" asp-area="" asp-controller="Login" asp-action="Logout">Cerrar sesión</a></li>
+  </ul>
+</div>
+                                  
                   
                 </div>
             </div>
@@ -47,6 +63,7 @@
     <div class="container">
         <div id="ContenedorModal"></div>
         <div id="ContenedorModal2"></div>
+        <div id="ContenedorModal3"></div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

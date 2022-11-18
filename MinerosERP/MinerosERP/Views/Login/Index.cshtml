@@ -29,6 +29,17 @@
                         <div class="card rounded-3 text-black">
                             <div class="row g-0">
                                 <div class="col-lg-6">
+                                    @if(ViewBag.resultado != null)
+{
+    if(ViewBag.resultado == true)
+    {
+        <div class="alert alert-success" role="alert">@ViewBag.mensajeResultado</div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">@ViewBag.mensajeResultado</div>
+    }
+}
                                     <div class="card-body p-md-5 mx-md-4">
 
                                         <div class="text-center">
@@ -63,8 +74,8 @@
                                            
 
                                             <div class="text-center pt-1 mb-5 pb-1">
-                                                <button type="submit" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" data-save="modal">Iniciar Sesión</button>
-                                                <br /> <p class="text-muted">Ante cualquier problematica contacte al soporte tecnico <a href="#!"> soporte@minero.udb.sv</a> </p>
+                                                 <button type="submit" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" data-save="modal">Iniciar Sesión</button>
+                                                 <p class="text-muted">¿Olvidaste tu contraseña? Restablecela <a href="https://mineros-api.herokuapp.com/accounts/password_reset/">aquí</a> <br /><br />Ante cualquier problematica contacte al soporte tecnico <a href="#!"> soporte@mineros.sv</a> </p>
                                             </div>
 
 

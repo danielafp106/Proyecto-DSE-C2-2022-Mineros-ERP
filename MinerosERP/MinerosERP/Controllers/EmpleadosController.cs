@@ -16,11 +16,19 @@ namespace MinerosERP.Controllers
 
         public async Task<IActionResult> Index()
         {
+            ViewData["user"] = HttpContext.Session.GetString("username").ToString();
+            ViewData["name"] = HttpContext.Session.GetString("full_name").ToString();
+            ViewData["pk"] = HttpContext.Session.GetInt32("id_usuario").ToString();
+            ViewData["id_empleado"] = HttpContext.Session.GetInt32("id_empleado").ToString();
+            ViewData["id_cargo"] = HttpContext.Session.GetInt32("id_cargo").ToString();
+            ViewData["key"] = HttpContext.Session.GetInt32("key").ToString();
+            int currentIdEmpleado = Convert.ToInt32(HttpContext.Session.GetInt32("id_empleado").ToString());
+            int currentIdCargo = Convert.ToInt32(HttpContext.Session.GetInt32("id_cargo").ToString());
             if (TempData["resultado"] != null && TempData["mensajeResultado"] != null)
             {
                 ViewBag.resultado = Convert.ToBoolean(TempData["resultado"]);
                 ViewBag.mensajeResultado = TempData["mensajeResultado"].ToString();
-                if (ViewBag.usermessage != null)
+                if (TempData["usermessage"] != null)
                 {
                     ViewBag.usermessage = TempData["usermessage"].ToString();
                 }        
@@ -28,6 +36,12 @@ namespace MinerosERP.Controllers
 
             //Obtenemos todos los registros del usuario
             List<Empleados> empleados = await _serviciosEmpleadosAPI.ListarEmpleados();
+            Empleados currenEmployee = empleados.Where(x => x.id_empleado == currentIdEmpleado).FirstOrDefault();
+            empleados.Remove(currenEmployee);
+            if(currentIdCargo==7 || currentIdCargo==1)
+            {
+                empleados.RemoveAll(x => x.id_area != currenEmployee.id_area);
+            }
             List<Areas> areaEmp = await _serviciosEmpleadosAPI.ListarAreas();
             List<Cargos> cargoEmp = await _serviciosEmpleadosAPI.ListarCargosEmpleados();
             List<Usuarios> allusers = await _serviciosEmpleadosAPI.ListarUsuarios();
@@ -132,9 +146,19 @@ namespace MinerosERP.Controllers
                 {
                     throw new Exception("Algo salió mal, intentelo de nuevo.");
                 }
-                TempData["resultado"] = await _serviciosEmpleadosAPI.GuardarEmpleado(obj);
-                TempData["mensajeResultado"] = "¡Empleado Registrado Exitosamente!";
-                return RedirectToAction("Index");
+                bool resultado = await _serviciosEmpleadosAPI.GuardarEmpleado(obj);
+                TempData["resultado"] = resultado;
+                if (resultado == true)
+                {                 
+                    TempData["mensajeResultado"] = "¡Empleado Registrado Exitosamente!";
+                    return Json(new { success = true, responseText = "Your message successfuly sent!" });
+                }
+                else
+                {
+                    TempData["mensajeResultado"] = "Algo salió mal, vuelva a intentarlo";
+                    throw new Exception("Algo salió mal, vuelva a intentarlo");
+                }              
+                
             }
             throw new Exception("Existen campos vacíos, porfavor completar formulario.");
 
@@ -143,8 +167,18 @@ namespace MinerosERP.Controllers
         {
             if (ModelState.IsValid)
             {
-                ViewBag.resultado = await _serviciosEmpleadosAPI.EditarEmpleado(id, obj);
-                return RedirectToAction("Index");
+                var resultado = await _serviciosEmpleadosAPI.EditarEmpleado(id, obj);
+                TempData["resultado"] = resultado;
+                if (resultado == true)
+                {
+                    TempData["mensajeResultado"] = "¡Empleado Modificado Exitosamente!";
+                    return Json(new { success = true, responseText = "Your message successfuly sent!" });
+                }
+                else
+                {
+                    TempData["mensajeResultado"] = "Algo salió mal, vuelva a intentarlo";
+                    throw new Exception("Algo salió mal, vuelva a intentarlo");
+                }
             }
             throw new Exception("Existen campos vacíos, porfavor completar formulario.");
 
@@ -153,10 +187,18 @@ namespace MinerosERP.Controllers
         {
 
             var resultado = await _serviciosEmpleadosAPI.EliminarEmpleado(id);
+            TempData["resultado"] = resultado;
             if (resultado)
+            {
+                
+                TempData["mensajeResultado"] = "¡Empleado Eliminado Exitosamente!";
                 return RedirectToAction("Index");
+            }
             else
-                return NoContent();
+            {
+                TempData["mensajeResultado"] = "¡Algo salió mal";
+                return RedirectToAction("Index");
+            }
         }
 
 
