@@ -3,40 +3,60 @@
     ViewBag.Title = "Registrar Empleado";
 }
 <div class="modal fade" tabindex="-1" id="NuevoEmpleado" data-keyboard="false" data-backdrop="static">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">@ViewBag.Title</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+            </div>                                    
+                        <div class="alert alert-danger" role="alert" id="erroresEmp" style="display:none;"></div>
+            <div class="modal-body m-2">
+
+                
                 <form action="@Url.Action("GuardarEmpleado")">
                    
                     <input asp-for="id_usuario" class="form-control" type="hidden" value="2" />
                     <div class="row">
                         <div class="col-md-6 col-sm-12  mt-2 mb-2">
-                            <label asp-for="nombres_empleado" class="form-label">Nombre Empleado</label>
+                            <label asp-for="nombres_empleado" class="form-label required" >Nombres Empleado</label>
                             <input type="text" class="form-control validate" asp-for="nombres_empleado"
-                                   placeholder="Wilfredo">
+                                   placeholder="Daniel Wilfredo" onchange="    changeFlagN();  setUserandPass()" id="nombres">
+                                    <span asp-validation-for="nombres_empleado" class="text-danger"></span>
                         </div>
-                        <div class="col-md-6 col-sm-12   mt-2 mb-2">
-                            <label asp-for="apellidos_empleado" class="form-label">Apellido Empleado</label>
+                        <div class="col-md-6 col-sm-12  mt-2 mb-2">
+                            <label asp-for="usuario" class="form-label">Usuario</label>
+                            <input type="text" class="form-control validate" asp-for="usuario" disabled id="user">
+                                    <span asp-validation-for="usuario" class="text-danger"></span>
+                        </div>
+                       
+                    </div>      
+                    
+                    <div class="row">
+                         <div class="col-md-6 col-sm-12   mt-2 mb-2">
+                            <label asp-for="apellidos_empleado" class="form-label" >Apellidos Empleado</label>
                             <input type="text" class="form-control validate" asp-for="apellidos_empleado"
-                               placeholder="Granados">
+                               placeholder="Granados Hernandez" onchange="    changeFlagL();  setUserandPass()" id="apellidos"> 
+                               <span asp-validation-for="apellidos_empleado" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 col-sm-12  mt-2 mb-2">
+                            <label asp-for="passwordtemp" class="form-label">Contraseña Temporal</label>
+                            <input type="text" class="form-control validate" asp-for="passwordtemp" disabled id="pass">
+                                    <span asp-validation-for="passwordtemp" class="text-danger"></span>
                         </div>
                     </div>
-
                     <div class="row">
-                        <div class="col-md-6 col-sm-12  mt-2 mb-2">
-                            <label asp-for="direccion_empleado" class="form-label">Dirección Empleado</label>
-                            <input type="text" class="form-control validate" asp-for="direccion_empleado"
-                                   placeholder="Wilfredo">
-                        </div>
                         <div class="col-md-6 col-sm-12   mt-2 mb-2">
                             <label asp-for="dui_empleado" class="form-label">DUI Empleado</label>
                             <input type="text" class="form-control validate" asp-for="dui_empleado"
-                                   placeholder="00000000-0">
+                                   placeholder="Digite DUI sin guión: 000000000">
+                                    <span asp-validation-for="dui_empleado" class="text-danger"></span>
                         </div>
+                         <div class="col-md-6 col-sm-12  mt-2 mb-2">
+                            <label asp-for="email" class="form-label">Correo Eléctronico</label>
+                            <input type="text" id="emailInput" class="form-control validate" asp-for="email" placeholder="email@dominio.com">
+                                    <span asp-validation-for="email" class="text-danger"></span>
+                        </div>
+                        
                     </div>
 
                     <div class="row">
@@ -44,34 +64,41 @@
                             <label asp-for="fecha_nacimiento_empleado" class="form-label">Fecha Nacimiento Empleado</label>
                             <input type="date" class="form-control validate" asp-for="fecha_nacimiento_empleado"
                                    placeholder="00-00-0000">
+                                    <span asp-validation-for="fecha_nacimiento_empleado" class="text-danger"></span>
                         </div>
                         <div class="col-md-6 col-sm-12   mt-2 mb-2">
                             <label asp-for="telefono_empleado" class="form-label">Telefono Empleado</label>
                             <input type="text" class="form-control validate" asp-for="telefono_empleado"
                                    placeholder="2222-2222">
+                                    <span asp-validation-for="telefono_empleado" class="text-danger"></span>
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12  mt-2 mb-2">
+                            <label asp-for="direccion_empleado" class="form-label">Dirección Empleado</label>
+                            <input type="text" class="form-control validate" asp-for="direccion_empleado"
+                                   placeholder="Residencial Villanueva, casa #14, Soyapango, San Salvador">
+                                    <span asp-validation-for="direccion_empleado" class="text-danger"></span>
+                        </div>                    
+                    </div>
                     <div class="row">
                         <div class="col-md-6 col-sm-12  mt-2 mb-2">
                             <label asp-for="numero_isss_empleado" class="form-label">ISSS Empleado</label>
                             <input type="text" class="form-control validate" asp-for="numero_isss_empleado"
-                                   placeholder="0000-000000">
+                                   placeholder="0000000000">
+                                    <span asp-validation-for="numero_isss_empleado" class="text-danger"></span>
                         </div>
                         <div class="col-md-6 col-sm-12   mt-2 mb-2">
                             <label asp-for="numero_afp_empleado" class="form-label">AFP Empleado</label>
                             <input type="text" class="form-control validate" asp-for="numero_afp_empleado"
-                                   placeholder="000000-000">
+                                   placeholder="0000000000000">
+                                    <span asp-validation-for="numero_afp_empleado" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 col-sm-12  mt-2 mb-2">
-                            <label asp-for="sueldo_empleado" class="form-label">Sueldo Empleado</label>
-                            <input type="text" class="form-control validate" asp-for="sueldo_empleado"
-                                   placeholder="0000-000000">
-                        </div>
+                        
                         <div class="col-md-6 col-sm-12   mt-2 mb-2">
-                            <label asp-for="id_area" class="form-label">Cargo Empleado</label>
+                            <label asp-for="id_area" class="form-label">Área Empleado</label>
                             <select asp-for="id_area" class="form-select">
                                 <option value="">--- Seleccionar Area ---</option>
                                 @foreach (Areas area in ViewBag.areas)
@@ -80,9 +107,8 @@
                                 }
 
                             </select>
+                             <span asp-validation-for="id_area" class="text-danger"></span>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-6 col-sm-12   mt-2 mb-2">
                             <label asp-for="id_cargo_empleado" class="form-label">Cargo Empleado</label>
                             <select asp-for="id_cargo_empleado" class="form-select">
@@ -93,16 +119,96 @@
                                 }
 
                             </select>
+                             <span asp-validation-for="id_cargo_empleado" class="text-danger"></span>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12  mt-2 mb-2">
+                            <label asp-for="sueldo_empleado" class="form-label">Sueldo Empleado</label>
+                          <div class="input-group">                           
+                            <span class="input-group-text">$</span>
+                            <input type="text" class="form-control validate" asp-for="sueldo_empleado"
+                                   placeholder="0000.00"> </div>
+                                    <span asp-validation-for="sueldo_empleado" class="text-danger"></span>
+                        </div>
+                        
+                    </div>
+
 
 
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-success" data-save="modal" data-index="@Url.Action("Index")">Guardar Empleado</button>
             </div>
         </div>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+var isNameChanged = false;
+var isLastnameChanged = false;
+var inputNombres = document.getElementById("nombres");
+var inputApellidos = document.getElementById("apellidos");
+var inputUsuario = document.getElementById("user");
+var inputContra = document.getElementById("pass");
+function changeFlagN()
+{
+    if(inputNombres.value !="")
+    {
+        isNameChanged = true;
+    }
+    else{
+        isNameChanged = false;
+    }
+    
+}
+function changeFlagL()
+{
+    if(inputApellidos.value !="")
+    {
+        isLastnameChanged = true;
+    }
+    else{
+        isLastnameChanged = false;
+    }
+    
+}
+function setUserandPass()
+{
+    changeFlagL();
+    changeFlagN();
+    if(isLastnameChanged == true && isNameChanged == true)
+    {
+        var nombres = inputNombres.value.split(' ');
+        var apellidos = inputApellidos.value.split(' ');
+        var username = nombres[0].toLowerCase() + '.' + apellidos[0].toLowerCase() + apellidos[1].toLowerCase().substring(0,2);
+        inputUsuario.value = removeaccents(username).replace('-','.');
+        inputContra.value = makeid(8);
+
+    }
+}
+
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength =  characters.length;
+    for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
+function removeaccents(word)
+{
+    return word.normalize('NFD').replace(/[\u0300-\u036f]/g, '') // Remove accents
+		.replace(/([^\w]+|\s+)/g, '-') // Replace space and other characters by hyphen
+		.replace(/\-\-+/g, '-')	// Replaces multiple hyphens by one hyphen
+		.replace(/(^-+|-+$)/g, ''); 
+}
+</script>

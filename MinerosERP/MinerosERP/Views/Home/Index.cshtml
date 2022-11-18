@@ -1,9 +1,148 @@
 ﻿@model List<Marcaciones>
 @{
-    ViewData["Title"] = "Marcaciones";
+    ViewData["Title"] = "Inicio";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <br />
+    <h1 class="display-6">¡Bienvenido/a @ViewData["name"]!</h1>
+     <br />
+      <br />
+<div class="container justify-content-center">
+    <div class="row justify-content-center">
+        <div class="col-md-4 col-xl-3">    
+            <div class="card bg-c-blue order-card">
+                <div class="card-block">
+                           <a class="btn" style="color: white" data-toggle="ajax-modal" data-target="#EditarEmpleado"
+                                    data-url="@Url.Action("VerEmpleadoModal" ,"Empleados", new {id =@ViewData["id_empleado"]})">
+                    <h6 class="m-b-20">FICHA DE EMPLEADO</h6>
+                    <br />
+                     <h2 class="text-center">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+</svg>
+                     </h2>
+                      <p class="m-b-0"> </p>
+                       <p class="m-b-0"> </p>
+                        </a>
+                </div>
+            </div>
+              
+        </div>
+
+        @if(Convert.ToInt32(ViewData["id_cargo"]) == 6 ||Convert.ToInt32(ViewData["id_cargo"]) == 9 || Convert.ToInt32(ViewData["id_cargo"]) == 1 ||Convert.ToInt32(ViewData["id_cargo"]) == 7)
+            {
+                <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-green order-card">
+                <div class="card-block">
+                     <a class="btn" style="color: white" asp-area="" asp-controller="Empleados" asp-action="Index">
+                    <h6 class="m-b-20">MÓDULO DE EMPLEADOS</h6>
+                    <br />
+                     <h2 class="text-center"><svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+  <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+</svg></h2>
+                      <p class="m-b-0"> </p>
+                       <p class="m-b-0"> </p></a>
+                </div>
+            </div>
+        </div>
+            }
+            
+        
+        
+        @if(Convert.ToInt32(ViewData["id_cargo"]) == 6 ||Convert.ToInt32(ViewData["id_cargo"]) == 9 || Convert.ToInt32(ViewData["id_cargo"]) == 1 ||Convert.ToInt32(ViewData["id_cargo"]) == 7)
+            {
+                <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-yellow order-card">
+                <div class="card-block">
+                    <a class="btn" style="color: white" asp-area="" asp-controller="Marcaciones" asp-action="IndexJefes">
+                     <h6 class="m-b-20">MÓDULO DE MARCACIONES</h6>
+                    <br />
+                     <h2 class="text-right">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+  <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+  <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+</svg>    
+                     </h2>
+                    <p class="m-b-0"> </p>
+                     <p class="m-b-0"> </p>
+                     </a>
+                </div>
+            </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-4 col-xl-3">
+            <div class="card bg-c-yellow order-card">
+                <div class="card-block">
+                    <a class="btn" style="color: white" asp-area="" asp-controller="Marcaciones" asp-action="Index">
+                     <h6 class="m-b-20">MÓDULO DE MARCACIONES</h6>
+                    <br />
+                     <h2 class="text-right">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+  <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+  <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+</svg>    
+                     </h2>
+                    <p class="m-b-0"> </p>
+                     <p class="m-b-0"> </p>
+                     </a>
+                </div>
+            </div>
+        </div>
+            }
+	</div>
 </div>
+</div>
+
+<style>
+
+.order-card {
+    color: #fff;
+}
+
+.bg-c-blue {
+    background: #4099ff;
+}
+
+.bg-c-green {
+    background: #2ed8b6;
+}
+
+.bg-c-yellow {
+    background: #FFB64D;
+}
+
+.bg-c-pink {
+    background:#FF5370;
+}
+
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    border: none;
+    margin-bottom: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.card .card-block {
+    padding: 25px;
+}
+
+.order-card i {
+    font-size: 26px;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+
+</style>

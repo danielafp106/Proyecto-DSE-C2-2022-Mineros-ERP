@@ -3,7 +3,7 @@
     public class Roles
     {
         //Los roles son para usuarios y para diferenciar que visualizan en el sistema
-        int IdRolUsuario { get; set; }
-        string RolUsuario { get; set; }
+        public int id_rol_usuario { get; set; }
+        public string rol_usuario { get; set; }
     }
 }

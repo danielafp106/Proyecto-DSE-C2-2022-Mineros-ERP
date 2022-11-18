@@ -2,6 +2,8 @@
 using System.Net.Http.Headers;
 using System.Text;
 using MinerosERP.Models;
+using System;
+using System.Diagnostics;
 
 namespace MinerosERP.Services
 {
@@ -343,5 +345,176 @@ namespace MinerosERP.Services
             return resultado;
         }
         #endregion
+
+        #region LOGIN
+
+        public async Task<LoginResponse> Login(Login Objeto)
+        {
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            LoginResponse user = new LoginResponse();
+
+            var content = new StringContent(JsonConvert.SerializeObject(Objeto), Encoding.UTF8, "application/json");
+
+            var response = await cliente.PostAsync($"api/authentication/login/", content);
+
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json_repuesta = await response.Content.ReadAsStringAsync();
+                user = JsonConvert.DeserializeObject<LoginResponse>(json_repuesta);
+                user.username = Objeto.username;
+                var response2 = await cliente.GetAsync($"api/authentication/user/?username={user.username}");
+                if (response2.IsSuccessStatusCode)
+                {
+                    var json_repuesta2 = await response2.Content.ReadAsStringAsync();
+                    var userInformation = JsonConvert.DeserializeObject<LoginResponse>(json_repuesta2);
+                    user.pk = userInformation.pk;
+                    user.first_name = userInformation.first_name;
+                    user.last_name = userInformation.last_name;
+                }
+                else
+                {
+                    return new LoginResponse();
+                }
+                return user;
+            }
+            //Aqui se debe de enviar el mensaje de error que response la api
+            return user;
+        }
+
+        public async Task<bool> GuardarContrasena(Registration EmpObjeto)
+        {
+            bool resultado = false;
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            cliente.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", EmpObjeto.key);
+
+            var content = new StringContent(JsonConvert.SerializeObject(EmpObjeto), Encoding.UTF8, "application/json");
+            var response = await cliente.PostAsync($"api/authentication/password/change/", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                resultado = true;
+            }
+
+            return resultado;
+        }
+        #endregion
+
+        #region REGISTRATION
+        public async Task<bool> Register(Registration obj)
+        {
+            var cliente = new HttpClient();
+            //Registration res = new Registration();
+            cliente.BaseAddress = new Uri(_baseurl);
+
+            var content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
+
+            try
+            {
+               var response = await cliente.PostAsync($"api/registration/", content);
+
+
+                //string  data = response.Content.ReadAsStringAsync().Result;
+                //var json_repuesta2 = await response.Content.ReadAsStringAsync();
+                //res = JsonConvert.DeserializeObject<Registration>(json_repuesta2);
+                //res = JsonConvert.DeserializeObject(<Registration>());
+                //Debug.WriteLine("Data",data);
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    //var json_repuesta2 = await response.Content.ReadAsStringAsync();
+                    //var userInformation = JsonConvert.DeserializeObject<LoginResponse>(json_repuesta2);
+                    //res.key = userInformation.key;
+                    return true;
+                }
+                else
+                {
+                    //Debug.WriteLine("EN el else", response);
+                    return false;
+                }
+
+            }
+            catch (InvalidCastException e)
+            {
+                //Aqui se debe de enviar el mensaje de error que response la api
+               
+                //Debug.WriteLine("EL ERROR", e);
+                return false;
+                //return "Algo salio mal";
+            }
+
+
+
+           
+        }
+        #endregion
+
+        #region USUARIOS
+        public async Task<List<Usuarios>> ListarUsuarios()
+        {
+            List<Usuarios> lista = new List<Usuarios>();
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            var response = await cliente.GetAsync("api/usuarios");
+            if (response.IsSuccessStatusCode)
+            {
+                var json_repuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<List<Usuarios>>(json_repuesta);
+                lista.AddRange(resultado);
+            }
+            return lista;
+        }
+
+        public async Task<Usuarios> ObtenerUsuario(int id)
+        {
+            Usuarios objeto = new Usuarios();
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            var response = await cliente.GetAsync($"api/usuarios/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var json_repuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<Usuarios>(json_repuesta);
+                objeto = resultado;
+            }
+            return objeto;
+        }
+        #endregion
+
+        #region ROLES
+        public async Task<List<Roles>> ListarRoles()
+        {
+            List<Roles> lista = new List<Roles>();
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            var response = await cliente.GetAsync("api/roles");
+            if (response.IsSuccessStatusCode)
+            {
+                var json_repuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<List<Roles>>(json_repuesta);
+                lista.AddRange(resultado);
+            }
+            return lista;
+        }
+
+        public async Task<Roles> ObtenerRol(int id)
+        {
+            Roles objeto = new Roles();
+            var cliente = new HttpClient();
+            cliente.BaseAddress = new Uri(_baseurl);
+            var response = await cliente.GetAsync($"api/roles/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var json_repuesta = await response.Content.ReadAsStringAsync();
+                var resultado = JsonConvert.DeserializeObject<Roles>(json_repuesta);
+                objeto = resultado;
+            }
+            return objeto;
+        }
+        #endregion
+
     }
 }

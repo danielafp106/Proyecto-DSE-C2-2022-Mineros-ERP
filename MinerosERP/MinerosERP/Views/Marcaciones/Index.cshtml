@@ -3,8 +3,22 @@
     ViewData["Title"] = "Marcaciones";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div id="ContenedorModal"></div>
+
+@if(ViewBag.resultado != null)
+{
+    if(ViewBag.resultado == true)
+    {
+        <div class="alert alert-success" role="alert">@ViewBag.mensajeResultado</div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">@ViewBag.mensajeResultado</div>
+    }
+}
+
+ <br />
 <div class="d-flex mb-2">
+   
     <div class="me-auto"><h1>Marcaciones</h1></div>
     <div class="p-2">
         @if(ViewBag.HayMarcacionAbierta == true)
@@ -19,7 +33,8 @@
     <div class="p-2">
         <span class="badge bg-dark" style="font-size:14px;">Total Semanal Laborado: <br />
             @ViewBag.HorasTotalesSemana </span>          
-    </div> 
+    </div>
+    
 </div>
 <h5>Semana Actual</h5>
 <table class="table table-striped">
@@ -45,28 +60,7 @@
     }
   </tbody>
 </table>
-<br />
-<h5>Histórico de Marcaciones</h5>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Fecha Marcación</th>
-      <th scope="col">Hora de Entrada</th>
-      <th scope="col">Hora de Salida</th>
-      <th scope="col">Total de Horas Laboradas</th>
-      <th scope="col">Tipo de Marcación</th>
-    </tr>
-  </thead>
-  <tbody>
-      @foreach(var item in ViewBag.TodasMarcaciones)
-    {
-           <tr>
-          <td><pre>@item.fecha_marcacion.Replace('.',' ')</pre></td>
-          <td>@item.hora_entrada</td>
-          <td>@item.hora_salida</td>
-          <td>@item.total_horas</td>
-          <td>@item.tipo_marcacion</td>
-        </tr>
-    }
-  </tbody>
-</table>
+ <button type="button"
+     class="btn btn-primary" id="btnHistoricosCurrentUser" 
+     data-toggle="ajax-modal-h" data-target="#HistoricalView" 
+     data-url="@Url.Action("VerHistorial","Marcaciones", new {id = @ViewData["id_empleado"]})')"><b>Ver Historial</b></button>   

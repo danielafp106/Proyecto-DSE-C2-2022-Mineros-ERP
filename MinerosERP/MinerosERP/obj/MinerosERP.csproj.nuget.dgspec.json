@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\xvwil\\Desktop\\Proyecto-de-Catedra-DSE-C2-2022\\MinerosERP\\MinerosERP\\MinerosERP.csproj": {}
+    "Z:\\DSE\\PROYECTO\\FF\\FRONT\\Proyecto-de-Catedra-DSE-C2-2022\\MinerosERP\\MinerosERP\\MinerosERP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\xvwil\\Desktop\\Proyecto-de-Catedra-DSE-C2-2022\\MinerosERP\\MinerosERP\\MinerosERP.csproj": {
+    "Z:\\DSE\\PROYECTO\\FF\\FRONT\\Proyecto-de-Catedra-DSE-C2-2022\\MinerosERP\\MinerosERP\\MinerosERP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\xvwil\\Desktop\\Proyecto-de-Catedra-DSE-C2-2022\\MinerosERP\\MinerosERP\\MinerosERP.csproj",
+        "projectUniqueName": "Z:\\DSE\\PROYECTO\\FF\\FRONT\\Proyecto-de-Catedra-DSE-C2-2022\\MinerosERP\\MinerosERP\\MinerosERP.csproj",
         "projectName": "MinerosERP",
-        "projectPath": "C:\\Users\\xvwil\\Desktop\\Proyecto-de-Catedra-DSE-C2-2022\\MinerosERP\\MinerosERP\\MinerosERP.csproj",
-        "packagesPath": "C:\\Users\\xvwil\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\xvwil\\Desktop\\Proyecto-de-Catedra-DSE-C2-2022\\MinerosERP\\MinerosERP\\obj\\",
+        "projectPath": "Z:\\DSE\\PROYECTO\\FF\\FRONT\\Proyecto-de-Catedra-DSE-C2-2022\\MinerosERP\\MinerosERP\\MinerosERP.csproj",
+        "packagesPath": "C:\\Users\\danyh\\.nuget\\packages\\",
+        "outputPath": "Z:\\DSE\\PROYECTO\\FF\\FRONT\\Proyecto-de-Catedra-DSE-C2-2022\\MinerosERP\\MinerosERP\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\xvwil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\danyh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +43,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNet.Mvc": {
+              "target": "Package",
+              "version": "[5.2.9, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[6.0.10, )"
@@ -55,8 +62,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -68,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.306\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,0 +1,197 @@
+﻿@model List<Marcaciones>
+@{
+    ViewData["Title"] = "Marcaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if(ViewBag.resultado != null)
+{
+    if(ViewBag.resultado == true)
+    {
+        <div class="alert alert-success" role="alert">@ViewBag.mensajeResultado</div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">@ViewBag.mensajeResultado</div>
+    }
+}
+
+<div class="card-body">
+                        <!-- TAB -->
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="records-tab" data-bs-toggle="tab"
+                                    data-bs-target="#records-grados" type="button" role="tab" aria-controls="records"
+                                    aria-selected="true">
+                                    Mis Marcaciones
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="new-tab" data-bs-toggle="tab" data-bs-target="#new-grados"
+                                    type="button" role="tab" aria-controls="new" aria-selected="false">
+                                    Marcaciones de mis Empleados
+                                </button>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active p-3" id="records-grados" role="tabpanel"
+                                aria-labelledby="records-tab">
+                                <!-- CONTENIDO-->
+                               <div class="d-flex mb-2">
+                                   <div class="me-auto"><h1></h1></div>
+    <div class="p-2">
+        @if(ViewBag.HayMarcacionAbierta == true)
+        {
+            <button type="button" class="btn btn-outline-primary" onclick="location.href='@Url.Action("MarcarSalida","Marcaciones",new {id = @ViewBag.IdMarcacionAbierta})'"><b>Marcar Salida</b></button>
+        }
+        else
+        {
+            <button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#AddMarcacion" data-url="@Url.Action("MarcarEntradaModal")"><b>Marcar Entrada</b></button>
+        }
+        </div>
+    <div class="p-2">
+        <span class="badge bg-dark" style="font-size:14px;">Total Semanal Laborado: <br />
+            @ViewBag.HorasTotalesSemana </span>          
+    </div> 
+</div>
+<h5>Semana Actual</h5>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Fecha Marcación</th>
+      <th scope="col">Hora de Entrada</th>
+      <th scope="col">Hora de Salida</th>
+      <th scope="col">Total de Horas Laboradas</th>
+      <th scope="col">Tipo de Marcación</th>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach(var item in Model)
+    {
+           <tr>
+          <td><pre>@item.fecha_marcacion.Replace('.',' ')</pre></td>
+          <td>@item.hora_entrada</td>
+          <td>@item.hora_salida</td>
+          <td>@item.total_horas</td>
+          <td>@item.tipo_marcacion</td>
+        </tr>
+    }
+  </tbody>
+</table>
+               <button type="button"
+     class="btn btn-primary" id="btnHistoricosCurrentUser" 
+     data-toggle="ajax-modal-h" data-target="#HistoricalView" 
+     data-url="@Url.Action("VerHistorial","Marcaciones", new {id = @ViewData["id_empleado"]})')"><b>Ver Historial</b></button>   
+<br />
+
+                            </div>
+                            <div class="tab-pane fade p-3" id="new-grados" role="tabpanel" aria-labelledby="new-tab">
+                                <!-- CONTENIDO-->
+                               <div class="d-flex mb-2">
+                                   <div class="me-auto"><h1></h1></div>
+    <div class="p-2">
+  <div class="input-group flex-nowrap">
+  <span class="input-group-text" id="addon-wrapping"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
+  <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
+</svg></span>
+
+<form id="my_form" aria-label="Filtrar por Empleado" id="selectFilter">
+    <select class="form-select" onchange="FiltrarData(this.value)" id="selectEmp">
+        <option value='0' selected>Seleccionar Empleado</option>
+        @foreach (SelectEmpleados item in ViewBag.AllEmpleados)
+        {
+            <option value='@item.id_empleado'>@item.username</option>
+        }
+        </select>
+</form>
+  
+</div>
+   
+        </div>
+    <div class="p-2" id="panel">
+     <button type="button" style="display:none" 
+     class="btn btn-primary" id="btnHistoricos" 
+     data-toggle="ajax-modal-h" data-target="#HistoricalView" 
+     data-url="@Url.Action("VerHistorial")')" asp-route-id="0"><b>Ver Historial</b></button>   
+    </div> 
+</div>
+<h5>Semana Actual</h5>
+<table class="table table-striped" id="tablaEmp">
+  <thead>
+    <tr>
+      <th scope="col">Fecha Marcación</th>
+      <th scope="col">Hora de Entrada</th>
+      <th scope="col">Hora de Salida</th>
+      <th scope="col">Total de Horas Laboradas</th>
+      <th scope="col">Tipo de Marcación</th>
+      <th scope="col">Empleado</th>
+    </tr>
+  </thead>
+  <tbody id="tablabody">
+      @foreach(var item in ViewBag.SemanaActualEmpleados)
+    {
+           <tr>
+          <td><pre>@item.fecha_marcacion.Replace('.',' ')</pre></td>
+          <td>@item.hora_entrada</td>
+          <td>@item.hora_salida</td>
+          <td>@item.total_horas</td>
+          <td>@item.tipo_marcacion</td>
+          <td>@item.username</td>
+        </tr>
+    }
+  </tbody>
+</table>
+                            </div>
+                        </div>
+
+
+                    </div>
+<script>
+    var SemanaActualEmpleados = @Html.Raw(Json.Serialize(ViewBag.SemanaActualEmpleados));
+    function FiltrarData(id){
+        if(id !=0)
+        {
+            var newSemanaActualEmpleados = SemanaActualEmpleados.filter(item => (item.id_empleado == id));
+            document.getElementById('btnHistoricos').style.display = 'block';
+        }
+        else{
+            var newSemanaActualEmpleados = SemanaActualEmpleados;
+            document.getElementById('btnHistoricos').style.display = 'none';
+        }
+        
+        const table = document.getElementById('tablabody');
+        var rowCount = table.rows.length;
+        var rowCount2 = table.rows.length;
+        let i = 0;
+        while (i < rowCount) {
+            rowCount2 = rowCount2 - 1;
+            table.deleteRow(rowCount2);
+            i++;
+        }
+        var registrosCount = newSemanaActualEmpleados.length;
+        i = 0;
+        while(i<=registrosCount)
+        {
+            table.insertRow(i).innerHTML = "<td><pre>" + newSemanaActualEmpleados[i].fecha_marcacion.replace('.', ' ') + "</pre></td>" +
+                "<td>" + newSemanaActualEmpleados[i].hora_entrada + "</td>" +
+                "<td>" + newSemanaActualEmpleados[i].hora_salida  +"</td>" +
+                "<td>" + newSemanaActualEmpleados[i].total_horas + "</td>" +
+                "<td>" + newSemanaActualEmpleados[i].tipo_marcacion + "</td>" +
+                "<td>" + newSemanaActualEmpleados[i].username + "</td>";
+            i++;
+            console.log(i);
+        }
+        }
+        </script>
+    
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"></script>
+            <script>
+            $(document).ready(function() {
+            $('select').change(function() {
+                $('#btnHistoricos').attr('asp-route-id', $(this).children('option:selected').val());
+            })
+        });</script>
+        
+

@@ -10,6 +10,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div> 
             <div class="modal-body">  
+                @if(ViewBag.resultado != null)
+{
+    if(ViewBag.resultado == true)
+    {
+        <div class="alert alert-success" role="alert">@ViewBag.mensajeResultado</div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">@ViewBag.mensajeResultado</div>
+    }
+}
                 <form action="@Url.Action("GuardarMarcacion")">  
                     <div class="form-group">
                         <label asp-for="fecha_marcacion">Fecha:</label>
@@ -32,8 +43,17 @@
              </div>  
              <div class="modal-footer">  
                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                 <button type="button" class="btn btn-success" data-save="modal" data-index="@Url.Action("Index")">Guardar Marcación</button> 
-             </div>  
+                 @if(Convert.ToInt32(ViewData["id_cargo"]) == 6 ||Convert.ToInt32(ViewData["id_cargo"]) == 9 || Convert.ToInt32(ViewData["id_cargo"]) == 1 ||Convert.ToInt32(ViewData["id_cargo"]) == 7)
+                {
+                    <button type="button" class="btn btn-success" data-save="modal" data-index="@Url.Action("IndexJefes")">Guardar Marcación</button>
+
+                }
+                else
+                {
+                                    <button type="button" class="btn btn-success" data-save="modal" data-index="@Url.Action("Index")">Guardar Marcación</button> 
+
+                }
+            </div>  
         </div>  
     </div>  
 </div>

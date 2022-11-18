@@ -1,0 +1,41 @@
+﻿@model Registration
+@{
+    ViewBag.Title = "Cambiar Contraseña";
+}
+<div class="modal fade" tabindex="-1" id="CambiarContrasena" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">@ViewBag.Title</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="alert alert-danger" role="alert" id="erroresEmp" style="display:none;"></div>
+            <div class="modal-body">
+                <form action="@Url.Action("GuardarContrasena")"
+                    >
+                    <input asp-for="key" class="form-control" type="hidden" />                  
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12  mt-2 mb-2">
+                            <label asp-for="new_password1" class="form-label required" >Ingrese la nueva contraseña</label>
+                            <input type="password" class="form-control validate" asp-for="new_password1"
+                                  id="">
+                                    <span asp-validation-for="new_password1" class="text-danger"></span>
+                        </div>   
+                         </div>
+                        <div class="row">
+                        <div class="col-md-12 col-sm-12  mt-2 mb-2">
+                            <label asp-for="new_password2" class="form-label required" >Repita la nueva contraseña</label>
+                            <input type="password" class="form-control validate" asp-for="new_password2"
+                                    id="">
+                                    <span asp-validation-for="new_password2" class="text-danger"></span>
+                        </div>    
+                         </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success" data-save="modal" data-index="@Url.Action("Logout","Login")">Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
